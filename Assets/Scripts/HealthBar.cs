@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Robot robot;
+    public Gradient colorGradient;
     private Image fillingImage;
     private void Start()
     {
@@ -14,5 +15,6 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         fillingImage.fillAmount = robot.chargePercentage;
+        fillingImage.color = colorGradient.Evaluate(robot.chargePercentage);
     }
 }
