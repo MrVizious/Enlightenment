@@ -41,16 +41,19 @@ public class CameraZoom : MonoBehaviour
         desiredFOV = cam.fieldOfView;
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.mouseScrollDelta.y > 0)
-        {
-            desiredFOV -= zoomStep;
-        }
-        else if (Input.mouseScrollDelta.y < 0)
-        {
-            desiredFOV += zoomStep;
-        }
+        if (Input.mouseScrollDelta.y > 0) ZoomIn();
+        else if (Input.mouseScrollDelta.y < 0) ZoomOut();
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, desiredFOV, dampeningSpeed * Time.deltaTime);
+    }
+
+    public void ZoomIn()
+    {
+        desiredFOV -= zoomStep;
+    }
+    public void ZoomOut()
+    {
+        desiredFOV += zoomStep;
     }
 }
