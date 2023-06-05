@@ -22,6 +22,8 @@ public class StructurePlacer : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(forwardPosition, downwardDirection, out hit, Mathf.Infinity);
         MeshCollider meshCollider = hit.collider as MeshCollider;
+        Debug.Log(meshCollider);
+        Debug.Log(hit.triangleIndex);
         Mesh mesh = meshCollider.sharedMesh;
         Vector3[] vertices = mesh.vertices;
         int[] triangles = mesh.triangles;
