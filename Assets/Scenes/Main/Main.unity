@@ -415,8 +415,8 @@ MonoBehaviour:
     enabled: 0
     densityThreshold: 0.5
     returnAfterBeingPushedAway: 0
-    progressAverage: 0
-    lastJobDensityResult: 0
+    progressAverage: 0.9999999
+    lastJobDensityResult: 1
   centerOffsetCompatibility: NaN
   repathRateCompatibility: 0.5
   canSearchCompability: 1
@@ -432,10 +432,10 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 2000
   slowdownDistance: 0.6
-  pickNextWaypointDist: 2
+  pickNextWaypointDist: 4
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 0
-  preventMovingBackwards: 0
+  preventMovingBackwards: 1
   constrainInsideGraph: 0
 --- !u!114 &484419554
 MonoBehaviour:
@@ -454,7 +454,7 @@ MonoBehaviour:
   heightBackingField: 2
   centerBackingField: 1
   locked: 0
-  lockWhenNotMoving: 0
+  lockWhenNotMoving: 1
   agentTimeHorizon: 1
   obstacleTimeHorizon: 1
   maxNeighbours: 10
@@ -621,6 +621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e1309ffe4df854ab2a7822e38d4ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraControlType: 1
 --- !u!1 &754789635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,8 +1591,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 46.35
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
