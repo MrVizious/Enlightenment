@@ -38,7 +38,6 @@ public class Robot : MonoBehaviour
     {
         if (other.tag.ToLower().Equals("sun"))
         {
-            Debug.Log("Is in the sunlight!");
             sunCollider = other.GetComponent<Collider>();
         }
     }
@@ -48,7 +47,6 @@ public class Robot : MonoBehaviour
         if (other.tag.ToLower().Equals("sun")
             && otherCollider == sunCollider)
         {
-            Debug.Log("Is out of the sunlight!");
             sunCollider = null;
         }
     }
