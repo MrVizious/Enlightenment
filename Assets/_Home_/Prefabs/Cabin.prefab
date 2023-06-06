@@ -240,18 +240,18 @@ MonoBehaviour:
   graphMask:
     value: -1
   type: 3
-  mesh: {fileID: 0}
-  rectangleSize: {x: 7.21, y: 4.18}
-  circleRadius: 1
-  circleResolution: 6
-  height: 4.3
+  mesh: {fileID: -5495902117074765545, guid: 1326801d4d3e4f040acecce88ee41e08, type: 3}
+  rectangleSize: {x: 7.96, y: 5.83}
+  circleRadius: 4.19
+  circleResolution: 12
+  height: 3.51
   meshScale: 1
   center: {x: 0, y: 1.66, z: 0.6}
-  updateDistance: 0.4
+  updateDistance: 0.22
   isDual: 0
   radiusExpansionMode: 1
   cutsAddedGeom: 1
-  updateRotationDistance: 10
+  updateRotationDistance: 2
   useRotationAndScale: 1
 --- !u!1 &6986893319443833467
 GameObject:
@@ -399,6 +399,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1326801d4d3e4f040acecce88ee41e08, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7dccd724f7bb0644f827c35d803f5767, type: 2}
     - target: {fileID: 919132149155446097, guid: 1326801d4d3e4f040acecce88ee41e08, type: 3}
       propertyPath: m_Name
       value: cabin

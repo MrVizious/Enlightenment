@@ -367,7 +367,7 @@ MonoBehaviour:
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   endReachedDistance: 0.2
   whenCloseToDestination: 0
   rvoDensityBehavior:
@@ -659,7 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIexaUtVEYQEAAJACAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFUk1vwjAM/StVzgMxCu264xBCO1AmdZOm3ULi0khpUuUDVhD/fU5boLf14tT283svzoVY7Q2DLdiKvEYXktMa8EDembZNBQbIU0Q+26ZLfinh2rU6CAXTDnHFoi5LCy6AI/KLYYa5dojnEKPQZbSjTmj1X59lVAauOKQN4B/zkjrItamptFhxxgPWGGUV8OKu/k17xe1WjBgmzwNFdwgck9k067+OrNQI5j2yEGd4QJdZ35jMhxHJTeatMl/0eit9CvQ77yRey0NfKOSaw0orBSxYD+JL9AAjWOFNSdkIpoAasK7AwKqdku33zwgGiu4l5PRYI3blnRPq8MAevOC9hSOVvtvYIoM0gcU+nkMGL0k6gTJepvEzi5M0W6aMkc6FwMUKKj9wvnS3pegG1EjY8DAG8mhjaFOFx8ENPW3Eudaj5QhV6oIZALXrh9x9g0EevGq+5sJpU0DnIUDJ5Uquf1BLAwQUAAAICAAACCHsHVtEPXAAAAB7AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9YzN9ZRUEovSizIKAaKGII4pZkpIHa0kollqrlZqkmSsVGqZaqFmbluapqxqbmxYbKxmbmlqXlyslIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqeX2KZb2pxhjvIdKXYWgBQSwECLQAUAAAICAAACCHsWlLVRGEBAACQAgAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAACCHsHVtEPXAAAAB7AAAACQAkAAAAAAAAAAAAAACuAQAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGkCAAAAAA==
+    dataString: UEsDBBQAAAgIAAAIIewUo5xLYwEAAJMCAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1UstuwjAQ/JXI54IogaTpsQihHgiV0kpVb8beEEuOHfkBBcS/d50H5NJc1vHM7OzYvhKrvWGwBVuR1+hKcloDLsg707apwAB5isjnuWk3v5Rw57U6CAXTVnFDUJelBRfEEfnFMsO9c18voUaBZbSjTmj1P2+SdUzLqAxucQAM4B/zkjrItamptIiUWABBRlkFvLgHeNNecbsVI5PJc+/SLlqb2TTrvtat1CjmnbIQF3hIl1lHTOZ9i2SYdEDmi27gSp+C/c47iSeDBGc89ECuOay0UsBC+vH0g6zwpqRsJFNADVhXYGHVTsnz989IBoruJeT0WKN25Z0T6vDQHrzgXYQjlb69tEUGaQKLfTyHDF6SdAJlvEzjZxYnabZMGSNtCoF3K6j8wP7SDfeiG1Cjwfq30ZtHG0ObKrwPbuhpIy61tg+yUKUumAFQu67JPTcY9MGj5msunDYFtBmClFxv5PYHUEsDBBQAAAgIAAAIIewdW0Q9cAAAAHsAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz1jM31lFQSi9KLMgoBooYgjilmSkgdrSSiWWquVmqSZKxUaplqoWZuW5qmrGpubFhsrGZuaWpeXKyUixQfUllQapfYm4qRE9AYklGWmZeSmZeup5fYplvanGGO8h0pdhaAFBLAQItABQAAAgIAAAIIewUo5xLYwEAAJMCAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAIIewdW0Q9cAAAAHsAAAAJACQAAAAAAAAAAAAAALABAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAawIAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -733,7 +733,7 @@ MonoBehaviour:
   hardCollisions: 1
   symmetryBreakingBias: 0.1
   movementPlane: 2
-  drawObstacles: 0
+  drawObstacles: 1
   drawQuadtree: 0
 --- !u!1 &898414516
 GameObject:
@@ -1675,7 +1675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e915e26d7e728484f82649a361d36fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minFOV: 40
+  minFOV: 20
   maxFOV: 100
   dampeningSpeed: 2
   zoomStep: 15
@@ -1908,6 +1908,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4de9722464195ff41b9ea288cf583d40, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4de9722464195ff41b9ea288cf583d40, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
