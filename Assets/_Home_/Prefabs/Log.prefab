@@ -45,8 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa1ae5288a62184184468eac41fac0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logPrefab: {fileID: 0}
-  planet: {fileID: 0}
+  _minimumDistanceToSpawnableTypes:
+    m_keys:
+    - GuidAssignmentFailed: 0
+      GUID: 9fa1ae5288a62184184468eac41fac0b
+      _typeNameAndAssembly: Log, Assembly-CSharp
+      _suppressLogs: 0
+    - GuidAssignmentFailed: 0
+      GUID: 8bef8bc6fe6b9a74e9d2e0d367277f55
+      _typeNameAndAssembly: Rock, Assembly-CSharp
+      _suppressLogs: 0
+    m_values:
+    - 30
+    - 15
 --- !u!1 &8198107351184285917
 GameObject:
   m_ObjectHideFlags: 0

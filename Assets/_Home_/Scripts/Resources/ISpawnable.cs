@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using TypeReferences;
+using SerializableDictionaries;
 
 public interface ISpawnable
 {
-    float minimumDistanceToSameSpawnable
+    [ShowInInspector]
+    TypeReferenceFloatDictionary minimumDistanceToSpawnableTypes
     {
         get; set;
     }
-    Vector3 GenerateVector();
+    float defaultMinimumDistance { get; set; }
 }

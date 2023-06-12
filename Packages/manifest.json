@@ -6,12 +6,22 @@
       "scopes": [
         "com.arongranberg.astar"
       ]
+    },
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.openupm",
+        "com.solidalloy",
+        "org.nuget"
+      ]
     }
   ],
   "dependencies": {
     "com.arongranberg.astar": "4.3.73",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.jimmycushnie.noisynodes": "https://github.com/JimmyCushnie/Noisy-Nodes.git",
+    "com.solidalloy.type-references": "2.16.0",
     "com.unity.collab-proxy": "2.0.4",
     "com.unity.feature.development": "1.0.1",
     "com.unity.shadergraph": "14.0.7",
