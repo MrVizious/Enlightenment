@@ -5,16 +5,22 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Robot robot;
     public Gradient colorGradient;
-    private Image fillingImage;
+    public Image fillingImage;
+    private Canvas canvas;
     private void Start()
     {
-        fillingImage = GetComponent<Image>();
+        canvas = GetComponent<Canvas>();
     }
-    void Update()
+    public void ChangeCharge(float newCharge)
     {
-        fillingImage.fillAmount = robot.chargePercentage;
-        fillingImage.color = colorGradient.Evaluate(robot.chargePercentage);
+        if (newCharge >= 1f)
+        {
+            canvas.enabled = false;
+            return;
+        }
+        canvas.enabled = true;
+        fillingImage.fillAmount = newCharge;
+        fillingImage.color = colorGradient.Evaluate(newCharge);
     }
 }
