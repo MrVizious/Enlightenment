@@ -22,6 +22,16 @@ public class ResourceSpawner : MonoBehaviour
     }
 
     private List<Resource> spawnedResources = new List<Resource>();
+
+    private void Start()
+    {
+        SpawnRock();
+        SpawnRock();
+        SpawnLog();
+        SpawnLog();
+    }
+
+
     [Button]
     public void SpawnRock()
     {
