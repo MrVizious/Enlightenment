@@ -437,6 +437,7 @@ GameObject:
   - component: {fileID: 484419557}
   - component: {fileID: 484419558}
   - component: {fileID: 484419559}
+  - component: {fileID: 484419560}
   m_Layer: 7
   m_Name: Robot
   m_TagString: Untagged
@@ -611,7 +612,6 @@ MonoBehaviour:
   chargingSpeed: 0.03
   drainingSpeed: 0.05
   _chargePercentage: 1
-  resourceInRange: {fileID: 0}
 --- !u!64 &484419558
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -648,6 +648,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planet: {fileID: 651016189}
   prefab: {fileID: 5227737575296429890, guid: d14a58a4d5704874290a9ad9dd454c61, type: 3}
+--- !u!114 &484419560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484419550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1156953b7489694db7e64e7ba1bcc0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickedUpResource: {fileID: 0}
+  resourcesInRange: []
 --- !u!1 &586906226
 GameObject:
   m_ObjectHideFlags: 0

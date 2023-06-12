@@ -23,10 +23,9 @@ public class Robot : MonoBehaviour
     public float drainingSpeed = 0.15f;
     private Collider sunCollider = null;
     [SerializeField] private float _chargePercentage = 1f;
-    private Resource pickedUpResource = null;
-    [SerializeField] Resource resourceInRange = null;
 
-    // Update is called once per frame
+
+
     void Update()
     {
         // If it is not in the sunlight
@@ -46,14 +45,9 @@ public class Robot : MonoBehaviour
         {
             sunCollider = other.GetComponent<Collider>();
         }
-        else
-        {
-            Resource resource = other.GetComponent<Resource>();
-            if (resource == null) return;
-            if (resourceInRange != null) return;
-            resourceInRange = resource;
-        }
     }
+
+
     private void OnTriggerExit(Collider other)
     {
         Collider otherCollider = other.GetComponent<Collider>();
@@ -61,12 +55,6 @@ public class Robot : MonoBehaviour
             && otherCollider == sunCollider)
         {
             sunCollider = null;
-        }
-        else
-        {
-            Resource resource = other.GetComponent<Resource>();
-            if (resource == null) return;
-            if (resourceInRange == resource) resourceInRange = null;
         }
     }
 }
