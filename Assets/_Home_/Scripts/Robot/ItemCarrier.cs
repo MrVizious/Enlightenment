@@ -29,14 +29,12 @@ public class ItemCarrier : MonoBehaviour
             if (pickedUpResource == null)
             {
                 if (resourcesInRange.Count <= 0) return;
-                Debug.Log("Picking up");
                 pickedUpResource = resourcesInRange[0];
                 pickedUpResource.transform.position = transform.position + transform.up * 2.5f;
                 pickedUpResource.transform.SetParent(transform);
             }
             else
             {
-                Debug.Log("Dropping");
                 pickedUpResource.transform.SetParent(null);
                 pickedUpResource.transform.position = transform.position;
                 pickedUpResource.transform.rotation = transform.rotation;

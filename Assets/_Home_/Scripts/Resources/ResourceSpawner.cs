@@ -76,7 +76,7 @@ public class ResourceSpawner : MonoBehaviour
             position = hit.point;
             Vector3 normal = hit.normal;
             Vector3 forward = Vector3.Cross(Random.insideUnitSphere, normal).normalized;
-            Quaternion newRotation = Quaternion.LookRotation(forward, hit.normal);
+            Quaternion newRotation = Quaternion.LookRotation(forward, position - hit.collider.transform.position);
             //Instantiate(logPrefab, position, newRotation);
 
             return (position, newRotation);

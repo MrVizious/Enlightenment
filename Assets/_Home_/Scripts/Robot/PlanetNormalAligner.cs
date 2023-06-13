@@ -8,6 +8,7 @@ public class PlanetNormalAligner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.up = transform.position - planet.position;
+        Vector3 up = transform.position - planet.position;
+        transform.rotation = Quaternion.LookRotation(transform.forward, up);
     }
 }

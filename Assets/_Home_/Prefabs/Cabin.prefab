@@ -45,7 +45,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.9339623, g: 0.61414945, b: 0.36628437, a: 1}
   m_Intensity: 0.8
-  m_Range: 150
+  m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -139,7 +139,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8584906, g: 0.6304505, b: 0.1990032, a: 1}
   m_Intensity: 0.8
-  m_Range: 150
+  m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -198,7 +198,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5841825812345130558}
   - component: {fileID: 805594812352428689}
-  - component: {fileID: -2299131568117455349}
   m_Layer: 0
   m_Name: Cabin
   m_TagString: Untagged
@@ -242,19 +241,6 @@ MonoBehaviour:
   plannedMaterial: {fileID: 2100000, guid: c683cab1c04cb0f42b96cd6a02e1996e, type: 2}
   buildingMaterial: {fileID: 0}
   builtMaterial: {fileID: 0}
---- !u!114 &-2299131568117455349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5227737575296429890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18cba52539d715947a5c01d9aea221e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planet: {fileID: 0}
 --- !u!1 &6986893319443833467
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +286,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.8584906, g: 0.6304505, b: 0.1990032, a: 1}
   m_Intensity: 0.8
-  m_Range: 150
+  m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
