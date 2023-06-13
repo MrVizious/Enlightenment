@@ -49,7 +49,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private Camera _cam = null;
     [SerializeField]
-    private bool findingPlayer = false;
+    private bool findingPlayer = false, followingPlayer = false;
     private float movementSpeed
     {
         get
@@ -73,58 +73,89 @@ public class CameraManager : MonoBehaviour
         }
         set => _player = value;
     }
+    private float verticalMovement = 0f, rotationalMovement = 0f, horizontalMovement = 0f;
     private void Start()
     {
         desiredFOV = cam.fieldOfView;
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z)) findingPlayer = !findingPlayer;
-        if (!findingPlayer) MovementUpdate();
-        else FindPlayerUpdate();
+        InputUpdate();
+        if (horizontalMovement != 0f || verticalMovement != 0f || rotationalMovement != 0f) MovementUpdate();
+        if (followingPlayer)
+        {
+            if (findingPlayer) FindPlayerUpdate();
+            else FollowPlayerUpdate();
+        }
+        else if (findingPlayer) FindPlayerUpdate();
 
         ZoomUpdate();
     }
 
+    private void InputUpdate()
+    {
+        // Find player
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (followingPlayer) return;
+            findingPlayer = !findingPlayer;
+        }
+        // Follow player
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            followingPlayer = !followingPlayer;
+            findingPlayer = followingPlayer;
+        }
+
+        if (Input.mouseScrollDelta.y > 0) ZoomIn();
+        else if (Input.mouseScrollDelta.y < 0) ZoomOut();
+
+        verticalMovement = Input.GetAxis("Vertical");
+        rotationalMovement = Input.GetAxis("Rotational");
+        horizontalMovement = Input.GetAxis("Horizontal");
+    }
+
     private void MovementUpdate()
     {
-        float verticalMovement = Input.GetAxis("Vertical");
+        findingPlayer = followingPlayer = false;
         cameraPivot.Rotate(Vector3.right, movementSpeed * verticalMovement * Time.deltaTime);
-        float rotationalMovement = 0f;
         if (cameraControlType == CameraControlType.Simple)
         {
-            rotationalMovement = Input.GetAxis("Horizontal");
+            rotationalMovement = horizontalMovement;
             cameraPivot.Rotate(Vector3.forward, -movementSpeed * 2f * rotationalMovement * Time.deltaTime);
         }
         else if (cameraControlType == CameraControlType.Advanced)
         {
-            float horizontalMovement = Input.GetAxis("Horizontal");
             cameraPivot.Rotate(Vector3.up, -movementSpeed * horizontalMovement * Time.deltaTime);
-
-            rotationalMovement = Input.GetAxis("Rotational");
             cameraPivot.Rotate(Vector3.forward, -movementSpeed * 2f * rotationalMovement * Time.deltaTime);
         }
     }
 
     private void ZoomUpdate()
     {
-        if (Input.mouseScrollDelta.y > 0) ZoomIn();
-        else if (Input.mouseScrollDelta.y < 0) ZoomOut();
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, desiredFOV, zoomDampeningSpeed * Time.deltaTime);
     }
 
     private void FindPlayerUpdate()
     {
         findingPlayer = true;
-        Quaternion desiredDestination = Quaternion.LookRotation(-player.up, Vector3.up);
-        cameraPivot.rotation = Quaternion.RotateTowards(cameraPivot.rotation, desiredDestination,
+        Quaternion desiredRotation = Quaternion.LookRotation(-player.up, Vector3.up);
+        cameraPivot.rotation = Quaternion.RotateTowards(cameraPivot.rotation, desiredRotation,
                                 findingSpeed * Time.deltaTime);
-        if (Quaternion.Angle(desiredDestination, cameraPivot.rotation) < 0.2f)
+        if (Quaternion.Angle(desiredRotation, cameraPivot.rotation) < 0.2f)
         {
             findingPlayer = false;
         }
-
     }
+
+    private void FollowPlayerUpdate()
+    {
+        Quaternion desiredRotation = Quaternion.LookRotation(-player.up, Vector3.up);
+        cameraPivot.rotation = Quaternion.Slerp(cameraPivot.rotation, desiredRotation, 0.02f);
+    }
+
+
+
     public void ZoomIn()
     {
         desiredFOV -= zoomStep;

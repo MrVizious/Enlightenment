@@ -437,6 +437,7 @@ GameObject:
   - component: {fileID: 484419557}
   - component: {fileID: 484419558}
   - component: {fileID: 484419560}
+  - component: {fileID: 484419561}
   m_Layer: 7
   m_Name: Robot
   m_TagString: Untagged
@@ -507,7 +508,7 @@ MonoBehaviour:
   repathRateCompatibility: 0.5
   canSearchCompability: 1
   orientation: 0
-  enableRotation: 1
+  enableRotation: 0
   autoRepath:
     mode: 2
     period: 0.5
@@ -647,6 +648,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickedUpResource: {fileID: 0}
   resourcesInRange: []
+--- !u!114 &484419561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484419550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cba52539d715947a5c01d9aea221e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planet: {fileID: 651016189}
 --- !u!1 &498458917
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,8 +707,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPivot: {fileID: 735680397}
   cameraControlType: 1
-  minMovementSpeed: 30
-  maxMovementSpeed: 60
+  minMovementSpeed: 40
+  maxMovementSpeed: 70
   minFOV: 40
   maxFOV: 100
   zoomDampeningSpeed: 2
@@ -702,6 +716,7 @@ MonoBehaviour:
   findingSpeed: 100
   _cam: {fileID: 1959543446}
   findingPlayer: 0
+  followingPlayer: 0
 --- !u!1 &586906226
 GameObject:
   m_ObjectHideFlags: 0
