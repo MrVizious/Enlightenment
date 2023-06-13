@@ -197,7 +197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5841825812345130558}
-  - component: {fileID: 206869585439297812}
+  - component: {fileID: 805594812352428689}
   m_Layer: 0
   m_Name: Cabin
   m_TagString: Untagged
@@ -224,7 +224,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &206869585439297812
+--- !u!114 &805594812352428689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,26 +233,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5227737575296429890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ea5e2e5473310d46a9271c8718ac330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 2
-  graphMask:
-    value: -1
-  type: 3
-  mesh: {fileID: -5495902117074765545, guid: 1326801d4d3e4f040acecce88ee41e08, type: 3}
-  rectangleSize: {x: 7.96, y: 5.83}
-  circleRadius: 4.19
-  circleResolution: 12
-  height: 3.51
-  meshScale: 1
-  center: {x: 0, y: 1.66, z: 0.6}
-  updateDistance: 0.22
-  isDual: 0
-  radiusExpansionMode: 1
-  cutsAddedGeom: 1
-  updateRotationDistance: 2
-  useRotationAndScale: 1
+  placingInvalidMaterial: {fileID: 2100000, guid: 00a0ae664b2c2884bb90da5fe7a9cf35, type: 2}
+  placingValidMaterial: {fileID: 2100000, guid: 7dccd724f7bb0644f827c35d803f5767, type: 2}
+  plannedMaterial: {fileID: 2100000, guid: c683cab1c04cb0f42b96cd6a02e1996e, type: 2}
+  buildingMaterial: {fileID: 0}
+  builtMaterial: {fileID: 0}
 --- !u!1 &6986893319443833467
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +435,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5

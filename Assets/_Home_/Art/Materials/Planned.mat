@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cabin_Hologram
+  m_Name: Planned
   m_Shader: {fileID: -6465566751694194690, guid: 4e551cb6fac93c2489079bd5278a3703, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -102,10 +102,10 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Fresnel_Color: {r: 0.18403855, g: 0.7075472, b: 0.5885679, a: 1}
+    - _Fresnel_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Hologram_Tiling: {r: 8, g: 8, b: 0, a: 0}
-    - _Main_Color: {r: 0.10618928, g: 0.6792453, b: 0.5359813, a: 1}
-    - _Scroll_Speed: {r: 0, g: 0.14, b: 0, a: 0}
+    - _Main_Color: {r: 0.028666463, g: 1.0950592, b: 0.60155725, a: 1}
+    - _Scroll_Speed: {r: 0.05, g: 0.05, b: 0, a: 0}
     - _color: {r: 0.1767787, g: 0.6988002, b: 0.8301887, a: 0}
     - _offset_speed: {r: -0.02, g: 0.04, b: 0, a: 0}
   m_BuildTextureStacks: []

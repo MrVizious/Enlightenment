@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class StructurePlacer : MonoBehaviour
 {
     public Transform planet;
-    public GameObject structureToPlace;
+    public Structure structureToPlace;
     private Mesh _planetMesh;
     private Mesh planetMesh
     {
@@ -19,14 +20,28 @@ public class StructurePlacer : MonoBehaviour
         }
     }
 
+    [Button]
+    public void PlaceStructure(Structure structurePrefab)
+    {
+        structureToPlace = Instantiate(structurePrefab).GetComponentInChildren<Structure>();
+    }
+
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    PlaceStructure(prefab);
-        //}
+        if (structureToPlace == null) return;
         GetPlacePosition(out bool validPosition);
-
+        structureToPlace.state =
+            IsValidPosition(structureToPlace.transform.position) ?
+                Structure.StructureState.placing_valid
+                : Structure.StructureState.placing_invalid;
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (structureToPlace.state == Structure.StructureState.placing_valid)
+            {
+                structureToPlace.state = Structure.StructureState.planned;
+                structureToPlace = null;
+            }
+        }
     }
 
     private void GetPlacePosition(out bool validPosition)
@@ -45,7 +60,6 @@ public class StructurePlacer : MonoBehaviour
         {
             if (hit.collider is not MeshCollider) continue;
             if (((MeshCollider)hit.collider).sharedMesh != planetMesh) continue;
-            if (!IsValidPosition(hit.point)) return;
             Vector3 normal = hit.normal;
             Vector3 forward = Camera.main.transform.up.normalized;
             Quaternion newRotation = Quaternion.LookRotation(forward, normal);
@@ -76,26 +90,5 @@ public class StructurePlacer : MonoBehaviour
         }
         DebugExtension.DebugWireSphere(position, isValidPosition ? Color.green : Color.red, radius);
         return isValidPosition;
-    }
-    public void PlaceStructure(GameObject prefabToPlace)
-    {
-        Vector3 forwardPosition = transform.position + transform.up * 2 + transform.forward * 3f;
-        Vector3 downwardDirection = planet.position - forwardPosition;
-        RaycastHit hit;
-        Physics.Raycast(forwardPosition, downwardDirection, out hit, Mathf.Infinity);
-        MeshCollider meshCollider = hit.collider as MeshCollider;
-        Mesh mesh = meshCollider.sharedMesh;
-        Vector3[] vertices = mesh.vertices;
-        int[] triangles = mesh.triangles;
-        Vector3 v0 = vertices[triangles[hit.triangleIndex * 3 + 0]];
-        Vector3 v1 = vertices[triangles[hit.triangleIndex * 3 + 1]];
-        Vector3 v2 = vertices[triangles[hit.triangleIndex * 3 + 2]];
-
-        Vector3 structurePosition = (v0 + v1 + v2) / 3f;
-        // Local to world
-        Plane newPlane = new Plane(v0, v1, v2);
-        Vector3 normal = meshCollider.transform.TransformDirection(newPlane.normal.normalized);
-        structurePosition = meshCollider.transform.TransformPoint(structurePosition);
-        Instantiate(prefabToPlace, structurePosition, Quaternion.LookRotation(transform.forward, normal));
     }
 }
