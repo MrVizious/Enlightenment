@@ -45,6 +45,7 @@ public class StructurePlacer : MonoBehaviour
         {
             if (hit.collider is not MeshCollider) continue;
             if (((MeshCollider)hit.collider).sharedMesh != planetMesh) continue;
+            if (!IsValidPosition(hit.point)) return;
             Vector3 normal = hit.normal;
             Vector3 forward = Camera.main.transform.up.normalized;
             Quaternion newRotation = Quaternion.LookRotation(forward, normal);
@@ -55,6 +56,26 @@ public class StructurePlacer : MonoBehaviour
         //Instantiate(logPrefab, position, newRotation);
 
         //return (position, newRotation);
+    }
+
+    private bool IsValidPosition(Vector3 position, float radius = 4f)
+    {
+        bool isValidPosition = true;
+        Collider[] hitColliders = Physics.OverlapSphere(position, radius);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.transform.parent == structureToPlace) continue;
+            Resource resource = hitCollider.GetComponentInChildren<Resource>();
+            Robot robot = hitCollider.GetComponentInChildren<Robot>();
+            // TODO: Check structure collisions with other than this
+            if (resource != null || robot != null)
+            {
+                isValidPosition = false;
+                break;
+            }
+        }
+        DebugExtension.DebugWireSphere(position, isValidPosition ? Color.green : Color.red, radius);
+        return isValidPosition;
     }
     public void PlaceStructure(GameObject prefabToPlace)
     {
