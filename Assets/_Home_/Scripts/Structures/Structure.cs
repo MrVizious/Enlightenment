@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SerializableDictionaries;
+using UtilityMethods;
+using TypeReferences;
+
 
 public class Structure : MonoBehaviour
 {
+    public TypeReferenceFloatDictionary resourcesNeeded;
     public Material placingInvalidMaterial, placingValidMaterial, plannedMaterial, buildingMaterial, builtMaterial;
     [System.Serializable]
     public enum StructureState
@@ -15,8 +20,6 @@ public class Structure : MonoBehaviour
         built
     }
 
-    private StructureState _state = StructureState.placing_invalid;
-    [SerializeField]
     public StructureState state
     {
         get => _state;
@@ -30,7 +33,6 @@ public class Structure : MonoBehaviour
                     case StructureState.placing_invalid:
                     case StructureState.placing_valid:
                         SetMaterial(placingInvalidMaterial);
-                        Debug.Log("Changing to invalid");
                         _state = value;
                         break;
                     default: break;
@@ -43,7 +45,6 @@ public class Structure : MonoBehaviour
                 {
                     case StructureState.placing_valid:
                     case StructureState.placing_invalid:
-                        Debug.Log("Changing to valid");
                         SetMaterial(placingValidMaterial);
                         _state = value;
                         break;
@@ -57,8 +58,33 @@ public class Structure : MonoBehaviour
                 {
                     case StructureState.planned:
                     case StructureState.placing_valid:
-                        Debug.Log("Changing to planned");
                         SetMaterial(plannedMaterial);
+                        _state = value;
+                        break;
+                    default: break;
+                }
+            }
+            // Change to building
+            else if (value == StructureState.building)
+            {
+                switch (state)
+                {
+                    case StructureState.building:
+                    case StructureState.planned:
+                        SetMaterial(buildingMaterial);
+                        _state = value;
+                        break;
+                    default: break;
+                }
+            }
+            // Change to built
+            else if (value == StructureState.built)
+            {
+                switch (state)
+                {
+                    case StructureState.built:
+                    case StructureState.building:
+                        SetMaterial(builtMaterial);
                         _state = value;
                         break;
                     default: break;
@@ -67,9 +93,66 @@ public class Structure : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private StructureState _state = StructureState.placing_invalid;
+    private List<Resource> ownedResources = new List<Resource>();
     private void SetMaterial(Material newMaterial)
     {
         GetComponentInChildren<MeshRenderer>().material = newMaterial;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (state != StructureState.building && state != StructureState.planned) return;
+        Resource resource = other.GetComponent<Resource>();
+        if (resource == null) return;
+
+        TypeReference type = resource.GetType();
+        if (!resourcesNeeded.ContainsKey(type)) return;
+        if (resourcesNeeded[type] <= 0) return;
+
+        state = StructureState.building;
+        ownedResources.Add(resource);
+        PlaceResourceOnFloor(resource);
+        resourcesNeeded[type]--;
+        if (IsComplete())
+        {
+            foreach (Resource resourceToDestroy in ownedResources)
+            {
+                Destroy(resourceToDestroy.gameObject);
+            }
+            state = StructureState.built;
+        }
+    }
+
+    private bool IsComplete()
+    {
+        foreach (TypeReference neededType in resourcesNeeded.Keys)
+        {
+            if (resourcesNeeded[neededType] > 0) return false;
+        }
+        return true;
+    }
+    private void PlaceResourceOnFloor(Resource resource)
+    {
+        // Disable collisions
+        resource.GetComponent<Collider>().enabled = false;
+        Vector3 normal = transform.up;
+
+        // Get new position in radius
+        Vector3 resourceNewPosition = Math.RandomPointOnPlane(transform.position, normal, 0.4f);
+
+        // Get new rotation for resource
+        Vector3 forward = Vector3.Cross(Random.insideUnitSphere, normal).normalized;
+        Quaternion newRotation = Quaternion.LookRotation(forward, normal);
+
+        // Set position and rotation
+        resource.transform.position = resourceNewPosition;
+        resource.transform.rotation = newRotation;
+        resource.transform.SetParent(null);
+
+
+        resource.onDropped.Invoke();
     }
 
 }

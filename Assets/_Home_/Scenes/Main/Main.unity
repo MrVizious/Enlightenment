@@ -647,6 +647,89 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickedUpResource: {fileID: 0}
   resourcesInRange: []
+--- !u!1 &486629064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 486629065}
+  - component: {fileID: 486629067}
+  - component: {fileID: 486629066}
+  m_Layer: 3
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &486629065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486629064}
+  m_LocalRotation: {x: 0.6115379, y: 0.18579477, z: -0.22357136, w: 0.73587877}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 60, y: 60, z: 60}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1918349454}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 79.455, y: 0, z: -33.799}
+--- !u!23 &486629066
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486629064}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 764ed87cbe3c6804883ddd248372a03d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &486629067
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486629064}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &498458917
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,8 +778,8 @@ MonoBehaviour:
   cameraControlType: 1
   minMovementSpeed: 40
   maxMovementSpeed: 70
-  minFOV: 40
-  maxFOV: 100
+  minFOV: 20
+  maxFOV: 110
   zoomDampeningSpeed: 2
   zoomStep: 15
   findingSpeed: 100
@@ -1615,7 +1698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1622669625}
   m_Layer: 0
-  m_Name: -- Canvas --
+  m_Name: -- UI --
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1981,6 +2064,7 @@ Transform:
   m_Children:
   - {fileID: 1028680298}
   - {fileID: 651016189}
+  - {fileID: 486629065}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -2578,7 +2662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 4de9722464195ff41b9ea288cf583d40, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 4de9722464195ff41b9ea288cf583d40, type: 3}
       propertyPath: m_CastShadows
@@ -2591,7 +2675,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4de9722464195ff41b9ea288cf583d40, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 54263ffe3fb773047ae1c301c7f6c5b1, type: 2}
+      objectReference: {fileID: 2100000, guid: 764ed87cbe3c6804883ddd248372a03d, type: 2}
     - target: {fileID: 919132149155446097, guid: 4de9722464195ff41b9ea288cf583d40, type: 3}
       propertyPath: m_Name
       value: Icosphere (1)

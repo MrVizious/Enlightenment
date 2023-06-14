@@ -26,21 +26,34 @@ public class ItemCarrier : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (pickedUpResource == null)
-            {
-                if (resourcesInRange.Count <= 0) return;
-                pickedUpResource = resourcesInRange[0];
-                pickedUpResource.transform.position = transform.position + transform.up * 2.5f;
-                pickedUpResource.transform.SetParent(transform);
-            }
-            else
-            {
-                pickedUpResource.transform.SetParent(null);
-                pickedUpResource.transform.position = transform.position;
-                pickedUpResource.transform.rotation = transform.rotation;
-                pickedUpResource = null;
-            }
-
+            if (pickedUpResource == null) PickUpResource();
+            else DropResource();
         }
+    }
+
+    public void PickUpResource()
+    {
+        if (pickedUpResource == null)
+        {
+            if (resourcesInRange.Count <= 0) return;
+            pickedUpResource = resourcesInRange[0];
+            pickedUpResource.transform.position = transform.position + transform.up * 2.5f;
+            pickedUpResource.transform.SetParent(transform);
+            pickedUpResource.onDropped.AddListener(ForgetResource);
+        }
+    }
+
+    public void DropResource()
+    {
+        pickedUpResource.transform.SetParent(null);
+        pickedUpResource.transform.position = transform.position;
+        pickedUpResource.transform.rotation = transform.rotation;
+        ForgetResource();
+    }
+
+    private void ForgetResource()
+    {
+        pickedUpResource.onDropped.RemoveListener(ForgetResource);
+        pickedUpResource = null;
     }
 }
