@@ -8,7 +8,7 @@ using TypeReferences;
 
 public class Structure : MonoBehaviour
 {
-    public TypeReferenceFloatDictionary resourcesNeeded;
+    public ResourceSOFloatDictionary resourcesNeeded;
     public Material placingInvalidMaterial, placingValidMaterial, plannedMaterial, buildingMaterial, builtMaterial;
     [System.Serializable]
     public enum StructureState
@@ -93,7 +93,6 @@ public class Structure : MonoBehaviour
         }
     }
 
-    [SerializeField]
     private StructureState _state = StructureState.placing_invalid;
     private List<Resource> ownedResources = new List<Resource>();
     private void SetMaterial(Material newMaterial)
@@ -107,14 +106,15 @@ public class Structure : MonoBehaviour
         Resource resource = other.GetComponent<Resource>();
         if (resource == null) return;
 
-        TypeReference type = resource.GetType();
-        if (!resourcesNeeded.ContainsKey(type)) return;
-        if (resourcesNeeded[type] <= 0) return;
+        ResourceSO resourceData = resource.data;
+        Debug.Log(resourceData);
+        if (!resourcesNeeded.ContainsKey(resourceData)) return;
+        if (resourcesNeeded[resourceData] <= 0) return;
 
         state = StructureState.building;
         ownedResources.Add(resource);
         PlaceResourceOnFloor(resource);
-        resourcesNeeded[type]--;
+        resourcesNeeded[resourceData]--;
         if (IsComplete())
         {
             foreach (Resource resourceToDestroy in ownedResources)
@@ -127,9 +127,9 @@ public class Structure : MonoBehaviour
 
     private bool IsComplete()
     {
-        foreach (TypeReference neededType in resourcesNeeded.Keys)
+        foreach (ResourceSO neededResourceData in resourcesNeeded.Keys)
         {
-            if (resourcesNeeded[neededType] > 0) return false;
+            if (resourcesNeeded[neededResourceData] > 0) return false;
         }
         return true;
     }

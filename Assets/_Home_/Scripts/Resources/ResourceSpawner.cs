@@ -6,7 +6,7 @@ using TypeReferences;
 
 public class ResourceSpawner : MonoBehaviour
 {
-    public Resource logPrefab, rockPrefab;
+    public ResourceSO logSO, rockSO;
     public GameObject planet;
     private Mesh _planetMesh;
     private Mesh planetMesh
@@ -27,6 +27,13 @@ public class ResourceSpawner : MonoBehaviour
     {
         SpawnRock();
         SpawnRock();
+        SpawnRock();
+        SpawnRock();
+        SpawnRock();
+        SpawnRock();
+        SpawnLog();
+        SpawnLog();
+        SpawnLog();
         SpawnLog();
         SpawnLog();
     }
@@ -35,17 +42,18 @@ public class ResourceSpawner : MonoBehaviour
     [Button]
     public void SpawnRock()
     {
-        Spawn(rockPrefab);
+        Spawn(rockSO.prefab);
     }
     [Button]
     public void SpawnLog()
     {
-        Spawn(logPrefab);
+        Spawn(logSO.prefab);
     }
-    public ISpawnable Spawn(Resource resourceToSpawn)
+    public Resource Spawn(Resource resourceToSpawn)
     {
         (Vector3, Quaternion) positionAndRotation = CalculateValidSpawnPoint(resourceToSpawn);
         Resource newResource = (Resource)Instantiate(resourceToSpawn, positionAndRotation.Item1, positionAndRotation.Item2);
+        newResource.transform.SetParent(transform);
         spawnedResources.Add(newResource);
         return newResource;
     }
@@ -97,13 +105,13 @@ public class ResourceSpawner : MonoBehaviour
             float distance = Vector3.Distance(spawnedResource.transform.position, positionAndRotation.Item1);
             float minimumDistance = 0f;
             // There is not an specified distance for the spawned resource
-            if (!resourceToSpawn.minimumDistanceToSpawnableTypes.ContainsKey(spawnedResource.GetType()))
+            if (!resourceToSpawn.data.minimumDistanceToResource.ContainsKey(spawnedResource.data))
             {
-                minimumDistance = resourceToSpawn.defaultMinimumDistance;
+                minimumDistance = ResourceSO.defaultMinimumDistanceToResource;
             }
             else
             {
-                minimumDistance = resourceToSpawn.minimumDistanceToSpawnableTypes[spawnedResource.GetType()];
+                minimumDistance = resourceToSpawn.data.minimumDistanceToResource[spawnedResource.data];
             }
             if (distance < minimumDistance) return CalculateValidSpawnPoint(resourceToSpawn);
         }

@@ -239,16 +239,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourcesNeeded:
     m_keys:
-    - GuidAssignmentFailed: 0
-      GUID: 9fa1ae5288a62184184468eac41fac0b
-      _typeNameAndAssembly: Log, Assembly-CSharp
-      _suppressLogs: 0
-    - GuidAssignmentFailed: 0
-      GUID: 8bef8bc6fe6b9a74e9d2e0d367277f55
-      _typeNameAndAssembly: Rock, Assembly-CSharp
-      _suppressLogs: 0
+    - {fileID: 11400000, guid: 016211ac452e99e46b533eee2cfce4f5, type: 2}
+    - {fileID: 11400000, guid: 82f8c585435ebbc48ac7f5f0a3f07edd, type: 2}
     m_values:
-    - 2
+    - 3
     - 1
   placingInvalidMaterial: {fileID: 2100000, guid: 00a0ae664b2c2884bb90da5fe7a9cf35, type: 2}
   placingValidMaterial: {fileID: 2100000, guid: 7dccd724f7bb0644f827c35d803f5767, type: 2}
