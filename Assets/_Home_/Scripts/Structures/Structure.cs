@@ -4,20 +4,22 @@ using UnityEngine;
 using SerializableDictionaries;
 using UtilityMethods;
 using TypeReferences;
+using GameEvents;
 
 
 public class Structure : MonoBehaviour
 {
+    public GameEvent onBuilt, onPlanned;
     public ResourceSOFloatDictionary resourcesNeeded;
     public Material placingInvalidMaterial, placingValidMaterial, plannedMaterial, buildingMaterial, builtMaterial;
     [System.Serializable]
     public enum StructureState
     {
-        placing_invalid,
-        placing_valid,
-        planned,
-        building,
-        built
+        Placing_invalid,
+        Placing_valid,
+        Planned,
+        Building,
+        Built
     }
 
     public StructureState state
@@ -26,12 +28,12 @@ public class Structure : MonoBehaviour
         set
         {
             // Change to invalid
-            if (value == StructureState.placing_invalid)
+            if (value == StructureState.Placing_invalid)
             {
                 switch (state)
                 {
-                    case StructureState.placing_invalid:
-                    case StructureState.placing_valid:
+                    case StructureState.Placing_invalid:
+                    case StructureState.Placing_valid:
                         SetMaterial(placingInvalidMaterial);
                         _state = value;
                         break;
@@ -39,12 +41,12 @@ public class Structure : MonoBehaviour
                 }
             }
             // Change to valid
-            else if (value == StructureState.placing_valid)
+            else if (value == StructureState.Placing_valid)
             {
                 switch (state)
                 {
-                    case StructureState.placing_valid:
-                    case StructureState.placing_invalid:
+                    case StructureState.Placing_valid:
+                    case StructureState.Placing_invalid:
                         SetMaterial(placingValidMaterial);
                         _state = value;
                         break;
@@ -52,25 +54,26 @@ public class Structure : MonoBehaviour
                 }
             }
             // Change to planned
-            else if (value == StructureState.planned)
+            else if (value == StructureState.Planned)
             {
                 switch (state)
                 {
-                    case StructureState.planned:
-                    case StructureState.placing_valid:
+                    case StructureState.Planned:
+                    case StructureState.Placing_valid:
                         SetMaterial(plannedMaterial);
+                        onPlanned.Raise();
                         _state = value;
                         break;
                     default: break;
                 }
             }
             // Change to building
-            else if (value == StructureState.building)
+            else if (value == StructureState.Building)
             {
                 switch (state)
                 {
-                    case StructureState.building:
-                    case StructureState.planned:
+                    case StructureState.Building:
+                    case StructureState.Planned:
                         SetMaterial(buildingMaterial);
                         _state = value;
                         break;
@@ -78,14 +81,15 @@ public class Structure : MonoBehaviour
                 }
             }
             // Change to built
-            else if (value == StructureState.built)
+            else if (value == StructureState.Built)
             {
                 switch (state)
                 {
-                    case StructureState.built:
-                    case StructureState.building:
+                    case StructureState.Built:
+                    case StructureState.Building:
                         SetMaterial(builtMaterial);
                         _state = value;
+                        onBuilt.Raise();
                         break;
                     default: break;
                 }
@@ -93,7 +97,7 @@ public class Structure : MonoBehaviour
         }
     }
 
-    private StructureState _state = StructureState.placing_invalid;
+    private StructureState _state = StructureState.Placing_invalid;
     private List<Resource> ownedResources = new List<Resource>();
     private void SetMaterial(Material newMaterial)
     {
@@ -102,7 +106,7 @@ public class Structure : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (state != StructureState.building && state != StructureState.planned) return;
+        if (state != StructureState.Building && state != StructureState.Planned) return;
         Resource resource = other.GetComponent<Resource>();
         if (resource == null) return;
 
@@ -111,7 +115,7 @@ public class Structure : MonoBehaviour
         if (!resourcesNeeded.ContainsKey(resourceData)) return;
         if (resourcesNeeded[resourceData] <= 0) return;
 
-        state = StructureState.building;
+        state = StructureState.Building;
         ownedResources.Add(resource);
         PlaceResourceOnFloor(resource);
         resourcesNeeded[resourceData]--;
@@ -121,7 +125,7 @@ public class Structure : MonoBehaviour
             {
                 Destroy(resourceToDestroy.gameObject);
             }
-            state = StructureState.built;
+            state = StructureState.Built;
         }
     }
 

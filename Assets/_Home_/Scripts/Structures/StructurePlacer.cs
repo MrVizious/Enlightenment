@@ -32,13 +32,13 @@ public class StructurePlacer : MonoBehaviour
         GetPlacePosition(out bool validPosition);
         structureToPlace.state =
             IsValidPosition(structureToPlace.transform.position) ?
-                Structure.StructureState.placing_valid
-                : Structure.StructureState.placing_invalid;
+                Structure.StructureState.Placing_valid
+                : Structure.StructureState.Placing_invalid;
         if (Input.GetMouseButtonDown(0))
         {
-            if (structureToPlace.state == Structure.StructureState.placing_valid)
+            if (structureToPlace.state == Structure.StructureState.Placing_valid)
             {
-                structureToPlace.state = Structure.StructureState.planned;
+                structureToPlace.state = Structure.StructureState.Planned;
                 structureToPlace = null;
             }
         }

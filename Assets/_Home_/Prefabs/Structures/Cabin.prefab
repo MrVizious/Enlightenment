@@ -237,6 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea5e2e5473310d46a9271c8718ac330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onBuilt: {fileID: 11400000, guid: 8a7d67095bd06d341af954829f78cf3a, type: 2}
+  onPlanned: {fileID: 11400000, guid: 77a8f58eefb1b8e438f97ae35cd7145e, type: 2}
   resourcesNeeded:
     m_keys:
     - {fileID: 11400000, guid: 016211ac452e99e46b533eee2cfce4f5, type: 2}
@@ -249,7 +251,6 @@ MonoBehaviour:
   plannedMaterial: {fileID: 2100000, guid: c683cab1c04cb0f42b96cd6a02e1996e, type: 2}
   buildingMaterial: {fileID: 2100000, guid: b0277b2b5e3072d4980a5afcaa40a663, type: 2}
   builtMaterial: {fileID: 2100000, guid: 32e1a85ede079ec4c9d0f4aa0460d7db, type: 2}
-  _state: 0
 --- !u!54 &8967541422468641315
 Rigidbody:
   m_ObjectHideFlags: 0

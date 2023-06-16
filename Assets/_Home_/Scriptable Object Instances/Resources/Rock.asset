@@ -22,4 +22,4 @@ MonoBehaviour:
     - 15
     - 10
   prefab: {fileID: 1923565087451108787, guid: 9ec112e7ec26ea74098012ce874f9f3c, type: 3}
-  weight: 6
+  speedModifier: 0.65
