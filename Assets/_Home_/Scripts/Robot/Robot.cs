@@ -5,7 +5,6 @@ using GameEvents;
 
 public class Robot : MonoBehaviour
 {
-
     public float chargePercentage
     {
         get => _chargePercentage;
