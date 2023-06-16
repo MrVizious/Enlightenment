@@ -13,7 +13,8 @@ public class ResourceSO : ScriptableObject
     public static float defaultMinimumDistanceToResource = 10f;
     public ResourceSOFloatDictionary minimumDistanceToResource;
     public Resource prefab;
-    public float weight;
+    [Range(0f, 1f)]
+    public float speedModifier;
 }
 
 [System.Serializable]
