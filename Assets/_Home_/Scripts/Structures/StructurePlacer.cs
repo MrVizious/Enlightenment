@@ -61,7 +61,7 @@ public class StructurePlacer : MonoBehaviour
             if (hit.collider is not MeshCollider) continue;
             if (((MeshCollider)hit.collider).sharedMesh != planetMesh) continue;
             Vector3 normal = hit.point - hit.collider.transform.position;
-            Vector3 forward = Camera.main.transform.up.normalized;
+            Vector3 forward = Vector3.ProjectOnPlane(Camera.main.transform.up.normalized, normal);
             Quaternion newRotation = Quaternion.LookRotation(forward, normal);
             structureToPlace.transform.position = hit.point;
             structureToPlace.transform.rotation = newRotation;
