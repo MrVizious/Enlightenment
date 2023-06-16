@@ -10,4 +10,5 @@ public class Resource : MonoBehaviour
 {
     public ResourceSO data;
     public UnityEvent onDropped;
+    public bool isBeingCarried = false;
 }

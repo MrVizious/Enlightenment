@@ -9,7 +9,7 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu(fileName = "ResourceSO", menuName = "Enlightenment/ResourceSO", order = 0)]
 public class ResourceSO : ScriptableObject
 {
-    [ShowInInspector]
+    public Sprite icon;
     public static float defaultMinimumDistanceToResource = 10f;
     public ResourceSOFloatDictionary minimumDistanceToResource;
     public Resource prefab;

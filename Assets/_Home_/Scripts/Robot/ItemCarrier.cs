@@ -58,6 +58,7 @@ public class ItemCarrier : MonoBehaviour
         pickedUpResource = resourcesInRange[0];
         pickedUpResource.transform.position = transform.position + transform.up * 2.5f;
         pickedUpResource.transform.SetParent(transform);
+        pickedUpResource.isBeingCarried = true;
         aiMover.maxSpeed *= pickedUpResource.data.speedModifier;
         robot.drainingSpeed += (1f - pickedUpResource.data.speedModifier) * 0.1f;
         pickedUpResource.onDropped.AddListener(ForgetResource);
@@ -76,6 +77,7 @@ public class ItemCarrier : MonoBehaviour
     {
         if (pickedUpResource == null) return;
         pickedUpResource.onDropped.RemoveListener(ForgetResource);
+        pickedUpResource.isBeingCarried = false;
         aiMover.maxSpeed /= pickedUpResource.data.speedModifier;
         robot.drainingSpeed -= (1f - pickedUpResource.data.speedModifier) * 0.1f;
         pickedUpResource = null;
