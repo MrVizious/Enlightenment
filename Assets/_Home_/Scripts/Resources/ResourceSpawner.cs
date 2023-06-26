@@ -6,7 +6,7 @@ using TypeReferences;
 
 public class ResourceSpawner : MonoBehaviour
 {
-    public ResourceSO logSO, rockSO;
+    public ResourceSO logSO, rockSO, fruitSO;
     public GameObject planet;
     private Mesh _planetMesh;
     private Mesh planetMesh
@@ -29,13 +29,15 @@ public class ResourceSpawner : MonoBehaviour
         SpawnRock();
         SpawnRock();
         SpawnRock();
-        SpawnRock();
-        SpawnRock();
         SpawnLog();
         SpawnLog();
         SpawnLog();
         SpawnLog();
         SpawnLog();
+        SpawnLog();
+        SpawnFruit();
+        SpawnFruit();
+        SpawnFruit();
     }
 
 
@@ -48,6 +50,11 @@ public class ResourceSpawner : MonoBehaviour
     public void SpawnLog()
     {
         Spawn(logSO.prefab);
+    }
+    [Button]
+    public void SpawnFruit()
+    {
+        Spawn(fruitSO.prefab);
     }
     public Resource Spawn(Resource resourceToSpawn)
     {

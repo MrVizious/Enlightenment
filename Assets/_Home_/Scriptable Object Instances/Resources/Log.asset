@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b404289133826409685c10e60e2bf3, type: 3}
   m_Name: Log
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: b6e615ec51f771540af058a4e4edcfd8, type: 3}
   minimumDistanceToResource:
     m_keys:
     - {fileID: 11400000}
     - {fileID: 11400000, guid: 82f8c585435ebbc48ac7f5f0a3f07edd, type: 2}
     - {fileID: 11400000, guid: f384df29c2e56894e82e4a07decd3d14, type: 2}
-    m_values:
-    - 30
-    - 15
-    - 10
+    m_values: 1e0000000f0000000a000000
   prefab: {fileID: 6756956428564224311, guid: 948928f8c958d5e4299306d181f01e61, type: 3}
   speedModifier: 0.4

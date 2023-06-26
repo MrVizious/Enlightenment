@@ -13,7 +13,7 @@ public class Structure : MonoBehaviour
     public GameEvent onBuilt, onPlanned;
     public ResourceSOIntDictionary resourcesNeeded;
     public UnityEvent onResourcesNeededChanged = new UnityEvent();
-    public Material placingInvalidMaterial, placingValidMaterial, plannedMaterial, buildingMaterial, builtMaterial;
+    public Material placingInvalidMaterial, placingValidMaterial, plannedMaterial, buildingMaterial;
     [System.Serializable]
     public enum StructureState
     {
@@ -89,7 +89,7 @@ public class Structure : MonoBehaviour
                 {
                     case StructureState.Built:
                     case StructureState.Building:
-                        SetMaterial(builtMaterial);
+                        SetMaterial(originalMaterials);
                         _state = value;
                         onBuilt.Raise();
                         break;
@@ -101,9 +101,19 @@ public class Structure : MonoBehaviour
 
     private StructureState _state = StructureState.Placing_invalid;
     private List<Resource> ownedResources = new List<Resource>();
+    private Material[] originalMaterials;
+    private void Awake()
+    {
+        originalMaterials = GetComponentInChildren<MeshRenderer>().materials;
+    }
+    private void SetMaterial(Material[] newMaterials)
+    {
+        GetComponentInChildren<MeshRenderer>().materials = newMaterials;
+    }
     private void SetMaterial(Material newMaterial)
     {
-        GetComponentInChildren<MeshRenderer>().material = newMaterial;
+        Material[] newMaterials = { newMaterial };
+        SetMaterial(newMaterials);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -113,7 +123,6 @@ public class Structure : MonoBehaviour
         if (resource == null) return;
 
         ResourceSO resourceData = resource.data;
-        Debug.Log(resourceData);
         if (!resourcesNeeded.ContainsKey(resourceData)) return;
         if (resourcesNeeded[resourceData] <= 0) return;
 

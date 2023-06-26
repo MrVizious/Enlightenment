@@ -28,7 +28,6 @@ public class Robot : MonoBehaviour
     {
         get
         {
-            Debug.Log("Accessing");
             if (_nightLight == null) _nightLight = GetComponentInChildren<Light>();
             return _nightLight;
         }

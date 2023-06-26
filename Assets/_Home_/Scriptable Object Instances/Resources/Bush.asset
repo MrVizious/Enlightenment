@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8b404289133826409685c10e60e2bf3, type: 3}
-  m_Name: Fruit
+  m_Name: Bush
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 05b9d7ac4ae6db64b9fd2878b7890c44, type: 3}
   minimumDistanceToResource:
     m_keys:
     - {fileID: 11400000}
     - {fileID: 11400000, guid: 016211ac452e99e46b533eee2cfce4f5, type: 2}
     - {fileID: 11400000, guid: 82f8c585435ebbc48ac7f5f0a3f07edd, type: 2}
-    m_values:
-    - 30
-    - 15
-    - 10
-  prefab: {fileID: 0}
+    m_values: 1e0000000f0000000a000000
+  prefab: {fileID: 1923565087451108787, guid: e7a8a16ea16a8f64f932f83959533e7d, type: 3}
   speedModifier: 0.8

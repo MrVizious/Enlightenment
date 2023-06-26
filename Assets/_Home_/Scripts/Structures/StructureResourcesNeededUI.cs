@@ -29,11 +29,7 @@ public class StructureResourcesNeededUI : MonoBehaviour
         foreach (ResourceSO resource in structure.resourcesNeeded.Keys)
         {
             ResourceNeededUI ui = bubblesDictionary[resource];
-            if (ui == null)
-            {
-                Debug.Log("Empty for " + resource + "!");
-                continue;
-            }
+            if (ui == null) continue;
             ui.SetAmountNeeded(structure.resourcesNeeded[resource]);
         }
         structure.onResourcesNeededChanged.AddListener(UpdateNumbers);
