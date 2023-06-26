@@ -5,6 +5,7 @@ using GameEvents;
 
 public class Robot : MonoBehaviour
 {
+    public bool isInLight => sunCollider != null;
     public float chargePercentage
     {
         get => _chargePercentage;
@@ -20,8 +21,18 @@ public class Robot : MonoBehaviour
     public GameEventFloat ChargeChanged;
     public float chargingSpeed = 0.1f;
     public float drainingSpeed = 0.15f;
-    private Collider sunCollider = null;
+    [SerializeField] private Collider sunCollider = null;
     [SerializeField] private float _chargePercentage = 1f;
+    [SerializeField] private Light _nightLight;
+    private Light nightLight
+    {
+        get
+        {
+            Debug.Log("Accessing");
+            if (_nightLight == null) _nightLight = GetComponentInChildren<Light>();
+            return _nightLight;
+        }
+    }
 
 
 
@@ -42,18 +53,30 @@ public class Robot : MonoBehaviour
     {
         if (other.tag.ToLower().Equals("sun"))
         {
-            sunCollider = other.GetComponent<Collider>();
+            if (sunCollider != null) return;
+
+            Collider otherCollider = other.GetComponent<Collider>();
+
+            if (otherCollider == null) return;
+
+            sunCollider = other;
+            nightLight.enabled = false;
         }
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        Collider otherCollider = other.GetComponent<Collider>();
-        if (other.tag.ToLower().Equals("sun")
-            && otherCollider == sunCollider)
+        if (other.tag.ToLower().Equals("sun"))
         {
+            if (sunCollider == null) return;
+
+            Collider otherCollider = other.GetComponent<Collider>();
+
+            if (otherCollider != sunCollider) return;
+
             sunCollider = null;
+            nightLight.enabled = true;
         }
     }
 }

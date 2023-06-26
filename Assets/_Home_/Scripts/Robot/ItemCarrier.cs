@@ -23,6 +23,15 @@ public class ItemCarrier : MonoBehaviour
             return _robot;
         }
     }
+    private Animator _animator;
+    private Animator animator
+    {
+        get
+        {
+            if (_animator == null) _animator = GetComponent<Animator>();
+            return _animator;
+        }
+    }
     [SerializeField]
     private Resource pickedUpResource = null;
     [SerializeField] List<Resource> resourcesInRange = new List<Resource>();
@@ -60,6 +69,7 @@ public class ItemCarrier : MonoBehaviour
         pickedUpResource.transform.SetParent(transform);
         pickedUpResource.isBeingCarried = true;
         aiMover.maxSpeed *= pickedUpResource.data.speedModifier;
+        animator.SetFloat("SpeedMultiplier", pickedUpResource.data.speedModifier);
         robot.drainingSpeed += (1f - pickedUpResource.data.speedModifier) * 0.1f;
         pickedUpResource.onDropped.AddListener(ForgetResource);
     }
@@ -79,6 +89,7 @@ public class ItemCarrier : MonoBehaviour
         pickedUpResource.onDropped.RemoveListener(ForgetResource);
         pickedUpResource.isBeingCarried = false;
         aiMover.maxSpeed /= pickedUpResource.data.speedModifier;
+        animator.SetFloat("SpeedMultiplier", 1f);
         robot.drainingSpeed -= (1f - pickedUpResource.data.speedModifier) * 0.1f;
         pickedUpResource = null;
     }
