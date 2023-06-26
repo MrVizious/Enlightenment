@@ -149,6 +149,7 @@ public class Structure : MonoBehaviour
         }
         return true;
     }
+
     private void PlaceResourceOnFloor(Resource resource)
     {
         // Disable collisions

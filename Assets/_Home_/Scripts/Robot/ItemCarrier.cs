@@ -46,6 +46,7 @@ public class ItemCarrier : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Resource resource = other.GetComponent<Resource>();
+        Debug.Log(other);
         if (resource == null) return;
         if (resourcesInRange.Contains(resource)) resourcesInRange.Remove(resource);
     }
@@ -88,6 +89,7 @@ public class ItemCarrier : MonoBehaviour
         if (pickedUpResource == null) return;
         pickedUpResource.onDropped.RemoveListener(ForgetResource);
         pickedUpResource.isBeingCarried = false;
+        resourcesInRange.Remove(pickedUpResource);
         aiMover.maxSpeed /= pickedUpResource.data.speedModifier;
         animator.SetFloat("SpeedMultiplier", 1f);
         robot.drainingSpeed -= (1f - pickedUpResource.data.speedModifier) * 0.1f;
