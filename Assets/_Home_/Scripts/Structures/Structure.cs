@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using SerializableDictionaries;
 using UtilityMethods;
 using TypeReferences;
@@ -10,7 +11,8 @@ using GameEvents;
 public class Structure : MonoBehaviour
 {
     public GameEvent onBuilt, onPlanned;
-    public ResourceSOFloatDictionary resourcesNeeded;
+    public ResourceSOIntDictionary resourcesNeeded;
+    public UnityEvent onResourcesNeededChanged = new UnityEvent();
     public Material placingInvalidMaterial, placingValidMaterial, plannedMaterial, buildingMaterial, builtMaterial;
     [System.Serializable]
     public enum StructureState
@@ -119,6 +121,7 @@ public class Structure : MonoBehaviour
         ownedResources.Add(resource);
         PlaceResourceOnFloor(resource);
         resourcesNeeded[resourceData]--;
+        onResourcesNeededChanged.Invoke();
         if (IsComplete())
         {
             foreach (Resource resourceToDestroy in ownedResources)

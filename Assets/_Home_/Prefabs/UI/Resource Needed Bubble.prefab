@@ -146,8 +146,9 @@ GameObject:
   - component: {fileID: 6071015205501610662}
   - component: {fileID: 5554185986002941827}
   - component: {fileID: 3736870832076700269}
+  - component: {fileID: 8533706996307367303}
   m_Layer: 0
-  m_Name: Resource Needed
+  m_Name: Resource Needed Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,6 +214,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8533706996307367303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039664805017861116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056659e1031ee4b47b812db0b6eb5bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iconImage: {fileID: 7119357756156365742}
+  text: {fileID: 8269555821871963213}
 --- !u!1 &6402686813642223257
 GameObject:
   m_ObjectHideFlags: 0

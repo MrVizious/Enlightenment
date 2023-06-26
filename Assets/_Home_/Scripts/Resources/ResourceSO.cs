@@ -11,11 +11,11 @@ public class ResourceSO : ScriptableObject
 {
     public Sprite icon;
     public static float defaultMinimumDistanceToResource = 10f;
-    public ResourceSOFloatDictionary minimumDistanceToResource;
+    public ResourceSOIntDictionary minimumDistanceToResource;
     public Resource prefab;
     [Range(0f, 1f)]
     public float speedModifier;
 }
 
 [System.Serializable]
-public class ResourceSOFloatDictionary : SerializableDictionary<ResourceSO, float> { }
+public class ResourceSOIntDictionary : SerializableDictionary<ResourceSO, int> { }
