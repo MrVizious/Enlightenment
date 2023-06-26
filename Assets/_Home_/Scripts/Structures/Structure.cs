@@ -168,7 +168,8 @@ public class Structure : MonoBehaviour
         resource.transform.SetParent(null);
 
 
-        resource.onDropped.Invoke();
+        resource.isBeingCarried = false;
+        //resource.onDropped.Invoke();
     }
 
 }
