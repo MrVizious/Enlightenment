@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UtilityMethods;
+using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CameraManager : MonoBehaviour
         Advanced
     }
     public Transform cameraPivot;
+    public CinemachineVirtualCamera vCam;
     public Camera cam
     {
         get
@@ -76,7 +78,7 @@ public class CameraManager : MonoBehaviour
     private float verticalMovement = 0f, rotationalMovement = 0f, horizontalMovement = 0f;
     private void Start()
     {
-        desiredFOV = cam.fieldOfView;
+        desiredFOV = vCam.m_Lens.FieldOfView;
     }
     private void Update()
     {
@@ -97,14 +99,12 @@ public class CameraManager : MonoBehaviour
         // Find player
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if (followingPlayer) return;
-            findingPlayer = !findingPlayer;
+            StartFindingPlayer();
         }
         // Follow player
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            followingPlayer = !followingPlayer;
-            findingPlayer = followingPlayer;
+            StartFollowingPlayer();
         }
 
         if (Input.mouseScrollDelta.y > 0) ZoomIn();
@@ -113,6 +113,17 @@ public class CameraManager : MonoBehaviour
         verticalMovement = Input.GetAxis("Vertical");
         rotationalMovement = Input.GetAxis("Rotational");
         horizontalMovement = Input.GetAxis("Horizontal");
+    }
+
+    public void StartFindingPlayer()
+    {
+        if (followingPlayer) return;
+        findingPlayer = !findingPlayer;
+    }
+    public void StartFollowingPlayer()
+    {
+        followingPlayer = !followingPlayer;
+        findingPlayer = followingPlayer;
     }
 
     private void MovementUpdate()
@@ -133,7 +144,7 @@ public class CameraManager : MonoBehaviour
 
     private void ZoomUpdate()
     {
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, desiredFOV, zoomDampeningSpeed * Time.deltaTime);
+        vCam.m_Lens.FieldOfView = Mathf.Lerp(cam.fieldOfView, desiredFOV, zoomDampeningSpeed * Time.deltaTime);
     }
 
     private void FindPlayerUpdate()

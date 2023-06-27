@@ -5,8 +5,9 @@ using Cysharp.Threading.Tasks;
 
 public class RocketItemDropper : MonoBehaviour
 {
-    public async void InitializeSequence(Vector3 initialPosition, Vector3 finalPosition, Quaternion rotation, GameObject itemToDrop, float secondsToDrop = 5f)
+    public async UniTask InitializeSequence(Vector3 initialPosition, Vector3 finalPosition, Quaternion rotation, GameObject itemToDrop, float secondsToDrop = 5f)
     {
+        initialPosition = initialPosition + (initialPosition - finalPosition) * 8;
         transform.position = initialPosition;
         transform.rotation = rotation;
         await MoveRocket(initialPosition, finalPosition, secondsToDrop);
@@ -20,9 +21,9 @@ public class RocketItemDropper : MonoBehaviour
         float distance = Vector3.Distance(from, to);
         float speed = distance / secondsToDrop;
         Vector3 direction = (to - from).normalized;
-        while (transform.position != to)
+        while (Vector3.Distance(transform.position, to) > 0.3f)
         {
-            transform.Translate(direction * speed * Time.deltaTime);
+            transform.Translate(direction * speed * Time.deltaTime, Space.World);
             await UniTask.NextFrame();
         }
     }

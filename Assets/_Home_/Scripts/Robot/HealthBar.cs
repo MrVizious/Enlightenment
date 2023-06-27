@@ -8,10 +8,17 @@ public class HealthBar : MonoBehaviour
 {
     public Gradient colorGradient;
     public Image fillingImage;
-    private Canvas canvas;
+    private Canvas _canvas;
+    private Canvas canvas
+    {
+        get
+        {
+            if (_canvas == null) _canvas = GetComponent<Canvas>();
+            return _canvas;
+        }
+    }
     private void Start()
     {
-        canvas = GetComponent<Canvas>();
     }
     public void ChangeCharge(float newCharge)
     {

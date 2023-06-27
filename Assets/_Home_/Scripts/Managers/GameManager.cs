@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using GameEvents;
+using Cysharp.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
     public Button buildCabinButton, buildFarmButton, buildInvestigationButton;
     public GameObject menuUI, gameUI;
-    public GameEvent advancedToArriving;
+    public GameEvent advancedToArriving, canMove, canNotMove;
+    public RocketItemDropper rocketDropperPrefab;
+    public GameObject robotAndTarget;
     [System.Serializable]
     public enum GameState
     {
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
             // Change to invalid
             if (value == GameState.Menu)
             {
+                canNotMove.Raise();
                 menuUI?.SetActive(true);
                 gameUI?.SetActive(false);
                 buildCabinButton.gameObject.SetActive(false);
@@ -42,18 +46,19 @@ public class GameManager : MonoBehaviour
             }
             if (value == GameState.Arriving)
             {
+                canNotMove.Raise();
+                DropRobot().Forget();
                 menuUI?.SetActive(false);
-                gameUI?.SetActive(true);
                 buildCabinButton.gameObject.SetActive(false);
                 buildFarmButton.gameObject.SetActive(false);
                 buildInvestigationButton.gameObject.SetActive(false);
                 _gameState = value;
-                gameState++;
             }
             if (value == GameState.BuildCabin)
             {
-                menuUI?.SetActive(false);
+                canMove.Raise();
                 gameUI?.SetActive(true);
+                FindObjectOfType<CameraManager>()?.StartFindingPlayer();
                 buildCabinButton.gameObject.SetActive(true);
                 _gameState = value;
             }
@@ -77,9 +82,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DropItemByRocket(Vector3 initialPosition, GameObject itemToDrop)
+    public async UniTask DropItemByRocket(Vector3 initialPosition, GameObject itemToDrop)
     {
+        Vector3 moonPosition = GameObject.Find("Moon").transform.position;
 
+        Ray ray = new Ray(initialPosition, moonPosition - initialPosition);
+        RaycastHit hit;
+        Debug.DrawLine(initialPosition, moonPosition, Color.red, 15f);
+        // Figure out where the ground is
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            Vector3 p = hit.point;
+            Vector3 normal = hit.normal;
+            Vector3 forward = Vector3.Cross(Random.insideUnitSphere, normal).normalized;
+            var rot = Quaternion.LookRotation(forward, normal);
+            await Instantiate(rocketDropperPrefab, initialPosition, rot).InitializeSequence(initialPosition, p, rot, itemToDrop);
+        }
+
+    }
+
+    public async UniTask DropRobot()
+    {
+        await DropItemByRocket(Camera.main.transform.position, robotAndTarget);
+        gameState = GameState.BuildCabin;
     }
 
 

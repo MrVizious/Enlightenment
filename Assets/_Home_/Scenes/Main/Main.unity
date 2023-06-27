@@ -546,7 +546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 287404255}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera Proxy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1256,6 +1256,8 @@ GameObject:
   m_Component:
   - component: {fileID: 498458918}
   - component: {fileID: 498458919}
+  - component: {fileID: 498458921}
+  - component: {fileID: 498458920}
   m_Layer: 0
   m_Name: CameraManager
   m_TagString: Untagged
@@ -1285,12 +1287,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498458917}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6f1c98e70c15b24cb00349e3b445eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPivot: {fileID: 735680397}
+  vCam: {fileID: 1610543210}
   cameraControlType: 1
   minMovementSpeed: 40
   maxMovementSpeed: 70
@@ -1302,6 +1305,58 @@ MonoBehaviour:
   _cam: {fileID: 0}
   findingPlayer: 0
   followingPlayer: 0
+--- !u!114 &498458920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498458917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cfaa02990b2bb8499ebd5dbf67e54e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 37149023d19d5554a85a14994ee2402a, type: 2}
+  Response:
+    _PersistentCalls:
+    - _Target: {fileID: 498458919}
+      _MethodName: set_enabled
+      _PersistentArguments:
+      - _Type: 1
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+--- !u!114 &498458921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498458917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cfaa02990b2bb8499ebd5dbf67e54e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 443efea7ffddaad489b105f4a1d443b9, type: 2}
+  Response:
+    _PersistentCalls:
+    - _Target: {fileID: 498458919}
+      _MethodName: set_enabled
+      _PersistentArguments:
+      - _Type: 1
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
 --- !u!1 &552783412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,7 +1701,7 @@ GameObject:
   - component: {fileID: 735680397}
   - component: {fileID: 735680398}
   - component: {fileID: 735680399}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2651,7 +2706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1139388959}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Intro Camera Proxy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3365,8 +3420,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 498458918}
   - {fileID: 2058872095}
+  - {fileID: 498458918}
   - {fileID: 754789637}
   - {fileID: 2045439201}
   - {fileID: 1059320558}
@@ -3571,6 +3626,8 @@ GameObject:
   - component: {fileID: 1610543209}
   - component: {fileID: 1610543208}
   - component: {fileID: 1610543211}
+  - component: {fileID: 1610543213}
+  - component: {fileID: 1610543212}
   m_Layer: 0
   m_Name: Game VCam
   m_TagString: Untagged
@@ -3680,6 +3737,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   proxy: {fileID: 287404255}
+--- !u!114 &1610543212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610543206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cfaa02990b2bb8499ebd5dbf67e54e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 37149023d19d5554a85a14994ee2402a, type: 2}
+  Response:
+    _PersistentCalls:
+    - _Target: {fileID: 1610543209}
+      _MethodName: set_enabled
+      _PersistentArguments:
+      - _Type: 1
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+--- !u!114 &1610543213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610543206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cfaa02990b2bb8499ebd5dbf67e54e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 443efea7ffddaad489b105f4a1d443b9, type: 2}
+  Response:
+    _PersistentCalls:
+    - _Target: {fileID: 1610543209}
+      _MethodName: set_enabled
+      _PersistentArguments:
+      - _Type: 1
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
 --- !u!1 &1622669624
 GameObject:
   m_ObjectHideFlags: 0
@@ -3842,7 +3951,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1649161904}
   - component: {fileID: 1649161905}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Intro Camera Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4590,6 +4699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Graphics
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 143ba9dbfc5affb47a4dc7a0ec561be5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5316,6 +5429,7 @@ GameObject:
   - component: {fileID: 2058872098}
   - component: {fileID: 2058872097}
   - component: {fileID: 2058872100}
+  - component: {fileID: 2058872101}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5356,6 +5470,10 @@ MonoBehaviour:
   menuUI: {fileID: 1747403355}
   gameUI: {fileID: 230985172}
   advancedToArriving: {fileID: 11400000, guid: 5c92d6e6988c1f541b0a49039c160959, type: 2}
+  canMove: {fileID: 11400000, guid: 443efea7ffddaad489b105f4a1d443b9, type: 2}
+  canNotMove: {fileID: 11400000, guid: 37149023d19d5554a85a14994ee2402a, type: 2}
+  rocketDropperPrefab: {fileID: 4303198183950288960, guid: 4d16bb60cb8e40d4687c0cdb91e59b57, type: 3}
+  robotAndTarget: {fileID: 2622243812120191541, guid: f4cb4193f8fecc249b6656d7daa2ccd1, type: 3}
   _gameState: 0
 --- !u!114 &2058872097
 MonoBehaviour:
@@ -5465,6 +5583,33 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+--- !u!54 &2058872101
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058872094}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2069993873
 GameObject:
   m_ObjectHideFlags: 0
