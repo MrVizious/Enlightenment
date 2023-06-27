@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public Button buildCabinButton, buildFarmButton, buildInvestigationButton;
     public enum GameState
     {
+        Intro,
         Arriving,
         BuildCabin,
         BuildFarm,
