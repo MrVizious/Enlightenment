@@ -46,7 +46,6 @@ public class ItemCarrier : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Resource resource = other.GetComponent<Resource>();
-        Debug.Log(other);
         if (resource == null) return;
         if (resourcesInRange.Contains(resource)) resourcesInRange.Remove(resource);
     }

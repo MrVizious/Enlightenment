@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Cysharp.Threading.Tasks;
+
+public class RocketItemDropper : MonoBehaviour
+{
+    public async void InitializeSequence(Vector3 initialPosition, Vector3 finalPosition, Quaternion rotation, GameObject itemToDrop, float secondsToDrop = 5f)
+    {
+        transform.position = initialPosition;
+        transform.rotation = rotation;
+        await MoveRocket(initialPosition, finalPosition, secondsToDrop);
+        Instantiate(itemToDrop, finalPosition, rotation);
+        await MoveRocket(finalPosition, initialPosition, secondsToDrop);
+        Destroy(gameObject);
+    }
+
+    public async UniTask MoveRocket(Vector3 from, Vector3 to, float secondsToDrop = 5f)
+    {
+        float distance = Vector3.Distance(from, to);
+        float speed = distance / secondsToDrop;
+        Vector3 direction = (to - from).normalized;
+        while (transform.position != to)
+        {
+            transform.Translate(direction * speed * Time.deltaTime);
+            await UniTask.NextFrame();
+        }
+    }
+}

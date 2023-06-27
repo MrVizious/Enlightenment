@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GameEvents;
 
 public class GameManager : MonoBehaviour
 {
     public Button buildCabinButton, buildFarmButton, buildInvestigationButton;
+    public GameObject menuUI, gameUI;
+    public GameEvent advancedToArriving;
+    [System.Serializable]
     public enum GameState
     {
-        Intro,
+        Menu,
         Arriving,
         BuildCabin,
         BuildFarm,
@@ -19,16 +23,37 @@ public class GameManager : MonoBehaviour
         Lost
     }
 
-    private GameState _gameState = GameState.Arriving;
+    [SerializeField] private GameState _gameState = GameState.Menu;
     public GameState gameState
     {
         get => _gameState;
         set
         {
-            if (value != gameState + 1) return;
+            if (value != gameState + 1 && value != gameState) return;
             // Change to invalid
+            if (value == GameState.Menu)
+            {
+                menuUI?.SetActive(true);
+                gameUI?.SetActive(false);
+                buildCabinButton.gameObject.SetActive(false);
+                buildFarmButton.gameObject.SetActive(false);
+                buildInvestigationButton.gameObject.SetActive(false);
+                _gameState = value;
+            }
+            if (value == GameState.Arriving)
+            {
+                menuUI?.SetActive(false);
+                gameUI?.SetActive(true);
+                buildCabinButton.gameObject.SetActive(false);
+                buildFarmButton.gameObject.SetActive(false);
+                buildInvestigationButton.gameObject.SetActive(false);
+                _gameState = value;
+                gameState++;
+            }
             if (value == GameState.BuildCabin)
             {
+                menuUI?.SetActive(false);
+                gameUI?.SetActive(true);
                 buildCabinButton.gameObject.SetActive(true);
                 _gameState = value;
             }
@@ -52,8 +77,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void DropItemByRocket(Vector3 initialPosition, GameObject itemToDrop)
+    {
+
+    }
+
+
     private void Start()
     {
-        gameState = GameState.BuildCabin;
+        gameState = gameState;
     }
 }
