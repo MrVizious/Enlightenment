@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             Vector3 p = hit.point;
-            GameObject.CreatePrimitive(PrimitiveType.Sphere).transform.position = p;
             Vector3 normal = hit.normal;
             Vector3 forward = Vector3.Cross(Random.insideUnitSphere, normal).normalized;
             var rot = Quaternion.LookRotation(forward, normal);
