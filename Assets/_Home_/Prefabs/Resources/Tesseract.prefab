@@ -38,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.0063, y: 8.4369}
-  m_SizeDelta: {x: 7.9349, y: 5.7961}
+  m_AnchoredPosition: {x: 0.0758, y: 4.9151}
+  m_SizeDelta: {x: 3.7559, y: 2.8662}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &9014979505697628831
 Canvas:
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5.15
+  m_fontSize: 2.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -359,6 +359,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _isBeingCarried: 0
+  secondsToExplode: 0
 --- !u!65 &6270508116555903058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -391,6 +392,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4f5231fabf0ebdd498a89573335f5aef, type: 3}
       propertyPath: m_RootOrder
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f5231fabf0ebdd498a89573335f5aef, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.46083
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f5231fabf0ebdd498a89573335f5aef, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.46083
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f5231fabf0ebdd498a89573335f5aef, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.46083
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4f5231fabf0ebdd498a89573335f5aef, type: 3}
       propertyPath: m_LocalPosition.x

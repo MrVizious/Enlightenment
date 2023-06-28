@@ -34,23 +34,19 @@ public class GameManager : MonoBehaviour
         get => _gameState;
         set
         {
-            if (value != gameState + 1 && value != gameState) return;
-            // Change to invalid
             if (value == GameState.Menu)
             {
                 canNotMove.Raise();
                 menuUI?.SetActive(true);
                 gameUI?.SetActive(false);
-                buildCabinButton.gameObject.SetActive(false);
-                buildFarmButton.gameObject.SetActive(false);
-                buildInvestigationButton.gameObject.SetActive(false);
+                FindObjectOfType<ResourceSpawner>()?.SpawnInitialResources();
+                Destroy(GameObject.Find("Robot and Target Combo"));
                 _gameState = value;
             }
             if (value == GameState.Arriving)
             {
                 canNotMove.Raise();
                 DropRobot().Forget();
-                menuUI?.SetActive(false);
                 buildCabinButton.gameObject.SetActive(false);
                 buildFarmButton.gameObject.SetActive(false);
                 buildInvestigationButton.gameObject.SetActive(false);
@@ -123,5 +119,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gameState = gameState;
+    }
+
+    [Button]
+    public void SetGameState(GameState newState)
+    {
+        gameState = newState;
     }
 }

@@ -23,8 +23,9 @@ public class ResourceSpawner : MonoBehaviour
 
     private List<Resource> spawnedResources = new List<Resource>();
 
-    private void Start()
+    public void SpawnInitialResources()
     {
+        CleanSpawnedResources();
         SpawnRock();
         SpawnRock();
         SpawnRock();
@@ -38,6 +39,15 @@ public class ResourceSpawner : MonoBehaviour
         SpawnFruit();
         SpawnFruit();
         SpawnFruit();
+    }
+
+    public void CleanSpawnedResources()
+    {
+        Resource[] spawnedResources = FindObjectsOfType<Resource>();
+        foreach (Resource resource in spawnedResources)
+        {
+            Destroy(resource.gameObject);
+        }
     }
 
 
