@@ -117,6 +117,7 @@ public class CameraManager : MonoBehaviour
 
     public void StartFindingPlayer()
     {
+        Debug.Log("Start finding player");
         if (followingPlayer) return;
         findingPlayer = !findingPlayer;
     }

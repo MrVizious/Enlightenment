@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using GameEvents;
 using Cysharp.Threading.Tasks;
+using Sirenix.OdinInspector;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuUI, gameUI;
     public GameEvent advancedToArriving, canMove, canNotMove;
     public RocketItemDropper rocketDropperPrefab;
+    public GameObject finalResource;
     public GameObject robotAndTarget;
     [System.Serializable]
     public enum GameState
@@ -82,29 +84,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public async UniTask DropItemByRocket(Vector3 initialPosition, GameObject itemToDrop)
+    public async UniTask DropItemByRocket(Vector3 initialPosition, Vector3 moonPosition, GameObject itemToDrop)
     {
-        Vector3 moonPosition = GameObject.Find("Moon").transform.position;
 
         Ray ray = new Ray(initialPosition, moonPosition - initialPosition);
         RaycastHit hit;
-        Debug.DrawLine(initialPosition, moonPosition, Color.red, 15f);
         // Figure out where the ground is
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             Vector3 p = hit.point;
+            GameObject.CreatePrimitive(PrimitiveType.Sphere).transform.position = p;
             Vector3 normal = hit.normal;
             Vector3 forward = Vector3.Cross(Random.insideUnitSphere, normal).normalized;
             var rot = Quaternion.LookRotation(forward, normal);
-            await Instantiate(rocketDropperPrefab, initialPosition, rot).InitializeSequence(initialPosition, p, rot, itemToDrop);
+            RocketItemDropper rocket = Instantiate(rocketDropperPrefab, initialPosition, rot);
+            await rocket.InitializeSequence(initialPosition, p, rot, itemToDrop);
         }
-
     }
 
     public async UniTask DropRobot()
     {
-        await DropItemByRocket(Camera.main.transform.position, robotAndTarget);
+        Vector3 moonPosition = GameObject.Find("Moon").transform.position;
+        await DropItemByRocket(Camera.main.transform.position, moonPosition, robotAndTarget);
         gameState = GameState.BuildCabin;
+    }
+
+    [Button]
+    public async UniTask DropFinalResource()
+    {
+        Vector3 investigationCenter = GameObject.Find("Investigation(Clone)").transform.position;
+        Vector3 moonPosition = GameObject.Find("Moon").transform.position;
+        Vector3 initialPosition = moonPosition - (investigationCenter - moonPosition) * 2;
+
+        await DropItemByRocket(initialPosition, moonPosition, finalResource);
+        gameState = GameState.CarryPackage;
     }
 
 

@@ -7,11 +7,12 @@ public class RocketItemDropper : MonoBehaviour
 {
     public async UniTask InitializeSequence(Vector3 initialPosition, Vector3 finalPosition, Quaternion rotation, GameObject itemToDrop, float secondsToDrop = 5f)
     {
-        initialPosition = initialPosition + (initialPosition - finalPosition) * 8;
+        initialPosition = initialPosition + (initialPosition - finalPosition) * 5;
         transform.position = initialPosition;
         transform.rotation = rotation;
         await MoveRocket(initialPosition, finalPosition, secondsToDrop);
         Instantiate(itemToDrop, finalPosition, rotation);
+        await UniTask.Delay(500);
         await MoveRocket(finalPosition, initialPosition, secondsToDrop);
         Destroy(gameObject);
     }
