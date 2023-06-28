@@ -26,6 +26,7 @@ public class ResourceSpawner : MonoBehaviour
     public void SpawnInitialResources()
     {
         CleanSpawnedResources();
+
         SpawnRock();
         SpawnRock();
         SpawnRock();
@@ -41,13 +42,14 @@ public class ResourceSpawner : MonoBehaviour
         SpawnFruit();
     }
 
+    [Button]
     public void CleanSpawnedResources()
     {
-        Resource[] spawnedResources = FindObjectsOfType<Resource>();
         foreach (Resource resource in spawnedResources)
         {
-            Destroy(resource.gameObject);
+            if (resource != null) Destroy(resource.gameObject);
         }
+        spawnedResources.Clear();
     }
 
 

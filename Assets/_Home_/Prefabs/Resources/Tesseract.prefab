@@ -359,7 +359,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _isBeingCarried: 0
-  secondsToExplode: 0
+  onWon: {fileID: 11400000, guid: f5cb6e259b46a9e4881f1e1d9e33d11b, type: 2}
+  onLost: {fileID: 11400000, guid: c4416c6d5a5c58b418ca936a7c599d85, type: 2}
+  secondsToExplode: 4
 --- !u!65 &6270508116555903058
 BoxCollider:
   m_ObjectHideFlags: 0

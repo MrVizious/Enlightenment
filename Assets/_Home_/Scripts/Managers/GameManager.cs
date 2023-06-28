@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
         BuildInvestigation,
         ReceivingPackage,
         CarryPackage,
-        LeavingPlanet,
-        Lost
+        GameOver,
+        GameWon
     }
 
     [SerializeField] private GameState _gameState = GameState.Menu;
@@ -40,7 +40,11 @@ public class GameManager : MonoBehaviour
                 menuUI?.SetActive(true);
                 gameUI?.SetActive(false);
                 FindObjectOfType<ResourceSpawner>()?.SpawnInitialResources();
-                Destroy(GameObject.Find("Robot and Target Combo"));
+                Destroy(GameObject.Find("Robot and Target Combo(Clone)"));
+                Transform copy = GameObject.Find("Main Camera Pivot Copy").transform;
+                GameObject.Find("Main Camera Pivot").transform.SetPositionAndRotation(
+                    copy.position, copy.rotation
+                );
                 _gameState = value;
             }
             if (value == GameState.Arriving)
@@ -75,9 +79,27 @@ public class GameManager : MonoBehaviour
             else if (value == GameState.ReceivingPackage)
             {
                 Debug.Log("Receiving package!");
+                DropFinalResource().Forget();
                 _gameState = value;
             }
+            else
+            {
+                FindObjectOfType<ResourceSpawner>()?.SpawnInitialResources();
+                Destroy(GameObject.Find("Robot and Target Combo(Clone)"));
+                _gameState = value;
+            }
+
         }
+    }
+
+    private Quaternion rotationDifference;
+
+    private void Start()
+    {
+        Transform introPivot = GameObject.Find("Intro Camera Pivot").transform;
+        Transform mainPivot = GameObject.Find("Main Camera Pivot").transform;
+        rotationDifference = Quaternion.RotateTowards(introPivot.transform.rotation, mainPivot.transform.rotation, Quaternion.Angle(introPivot.transform.rotation, mainPivot.transform.rotation));
+        gameState = gameState;
     }
 
     public async UniTask DropItemByRocket(Vector3 initialPosition, Vector3 moonPosition, GameObject itemToDrop)
@@ -100,6 +122,7 @@ public class GameManager : MonoBehaviour
     public async UniTask DropRobot()
     {
         Vector3 moonPosition = GameObject.Find("Moon").transform.position;
+        Vector3 initialPosition = GameObject.Find("Rocket Drop Point").transform.position;
         await DropItemByRocket(Camera.main.transform.position, moonPosition, robotAndTarget);
         gameState = GameState.BuildCabin;
     }
@@ -116,10 +139,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void Start()
-    {
-        gameState = gameState;
-    }
 
     [Button]
     public void SetGameState(GameState newState)

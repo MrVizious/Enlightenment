@@ -10,7 +10,7 @@ using GameEvents;
 
 public class Structure : MonoBehaviour
 {
-    public GameEvent onBuilt, onPlanned;
+    public GameEvent onBuilt, onPlanned, onWon;
     public ResourceSOIntDictionary resourcesNeeded;
     public UnityEvent onResourcesNeededChanged = new UnityEvent();
     public Material placingInvalidMaterial, placingValidMaterial, plannedMaterial, buildingMaterial;

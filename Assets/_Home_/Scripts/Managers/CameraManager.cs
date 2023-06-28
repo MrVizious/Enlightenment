@@ -69,7 +69,7 @@ public class CameraManager : MonoBehaviour
         {
             if (_player == null)
             {
-                _player = FindObjectOfType<Robot>().transform;
+                _player = FindObjectOfType<Robot>()?.transform;
             }
             return _player;
         }
@@ -117,8 +117,8 @@ public class CameraManager : MonoBehaviour
 
     public void StartFindingPlayer()
     {
-        Debug.Log("Start finding player");
         if (followingPlayer) return;
+        if (player == null) return;
         findingPlayer = !findingPlayer;
     }
     public void StartFollowingPlayer()
@@ -162,6 +162,7 @@ public class CameraManager : MonoBehaviour
 
     private void FollowPlayerUpdate()
     {
+        if (player == null) return;
         Quaternion desiredRotation = Quaternion.LookRotation(-player.up, Vector3.up);
         cameraPivot.rotation = Quaternion.Slerp(cameraPivot.rotation, desiredRotation, 0.02f);
     }

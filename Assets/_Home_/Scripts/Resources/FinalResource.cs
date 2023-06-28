@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GameEvents;
 
 public class FinalResource : Resource
 {
+    public GameEvent onWon, onLost;
     public float secondsToExplode;
     private float secondsBeingCarriedInSun = 0f;
     private Canvas _canvas;
@@ -46,7 +48,15 @@ public class FinalResource : Resource
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.tag.ToLower().Equals("sun")) return;
+        Structure structure = other.GetComponent<Structure>();
+        if (structure != null)
+        {
+            if (other.gameObject.name.ToLower().Equals("investigation(clone)"))
+            {
+                onWon.Raise();
+            }
+        }
+        else if (!other.tag.ToLower().Equals("sun")) return;
         if (sunCollider != null) return;
         sunCollider = other;
     }

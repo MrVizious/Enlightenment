@@ -13,12 +13,12 @@ public class Robot : MonoBehaviour
         {
             value = Mathf.Clamp01(value);
             _chargePercentage = value;
-            ChargeChanged.Raise(_chargePercentage);
-            if (_chargePercentage == 0f) PlayerDead.Raise();
+            chargeChanged.Raise(_chargePercentage);
+            if (_chargePercentage == 0f) playerDead.Raise();
         }
     }
-    public GameEvent PlayerDead;
-    public GameEventFloat ChargeChanged;
+    public GameEvent playerDead;
+    public GameEventFloat chargeChanged;
     public float chargingSpeed = 0.1f;
     public float drainingSpeed = 0.15f;
     [SerializeField] private Collider sunCollider = null;
