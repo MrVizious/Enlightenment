@@ -6407,15 +6407,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Music\n - \"Summer Days\" by Kai Engel (freemusicarchive.org)\n\nModels\n-
-    \"Low Poly Boulder\" by francis6774 (Sketchfab)\n- \"Low Poly Log\" by mankindforward
-    (Sketchfab)\n- \"Tesseract 2.0\" by EmersonCaon (Sketchfab)\n- \"Cute Robot Free
-    3D model\" by mdrendes (cgtrader)\n- \"Low Poly Cartoonic Rocket 3d model Free
-    low-poly 3D model\" by mdrendes (venkatselvaraj1988)\n- \"Low poly farm field\"
-    by devunolop (itch.io)\n- \"Low poly log cabin\" by T Allen (itch.io)\n- \"POLY
-    - Houses\" by Animpic Studio (Humble Bundle)\n\nTextures\n- \"Mars 8K Texture\"
-    (solarsystemscope.com)\n\nSkybox\n- \"SpaceSkies Free\" by Pulsar Bytes (Unity
-    Asset Store)\n"
+  m_text: "Audio\n - \"Summer Days\" by Kai Engel (freemusicarchive.org)\n- \"Space
+    rocket full power turbine\" (mixkit.co)\n\nModels\n- \"Low Poly Boulder\" by
+    francis6774 (Sketchfab)\n- \"Low Poly Log\" by mankindforward (Sketchfab)\n-
+    \"Tesseract 2.0\" by EmersonCaon (Sketchfab)\n- \"BUSH (Low Poly)\" by Rubiniuz
+    (Sketchfab)\n- \"Cute Robot Free 3D model\" by mdrendes (cgtrader)\n- \"Low Poly
+    Cartoonic Rocket 3d model Free low-poly 3D model\" by mdrendes (venkatselvaraj1988)\n-
+    \"Low poly farm field\" by devunolop (itch.io)\n- \"Low poly log cabin\" by T
+    Allen (itch.io)\n- \"POLY - Houses\" by Animpic Studio (Humble Bundle)\n\nTextures\n-
+    \"Mars 8K Texture\" (solarsystemscope.com)\n\nSkybox\n- \"SpaceSkies Free\" by
+    Pulsar Bytes (Unity Asset Store)\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6442,7 +6443,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.3
+  m_fontSize: 30.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6615,17 +6616,17 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Double Left Click - Move Robot To Spot
 
-    F - Pick / Drop Resource
+    WASD - Move Camera
 
-    X
-    - Follow Player
+    Q/E
+    - Rotate Camera
 
     Z - Find Player
 
-    WASD - Move Camera
+    X - Follow Player
 
-    Q/E - Rotate
-    Camera'
+    F - Pick / Drop
+    Resource'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
