@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onBuilt: {fileID: 11400000, guid: 60517f053c0c8e644ad303d9b4e7d76b, type: 2}
   onPlanned: {fileID: 11400000, guid: 34281769e980dca4d81a040371806d95, type: 2}
+  onResourceAdded: {fileID: 11400000, guid: 11df5891970c10e4fade72a7a3b9f855, type: 2}
   resourcesNeeded:
     m_keys:
     - {fileID: 11400000, guid: 016211ac452e99e46b533eee2cfce4f5, type: 2}
