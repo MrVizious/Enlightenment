@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8575ca0c9c4cb4a8db0e318d920854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameLost: {fileID: 0}
+  gameLost: {fileID: 11400000, guid: c4416c6d5a5c58b418ca936a7c599d85, type: 2}
   chargeChanged: {fileID: 11400000, guid: fb92f17335a46724b9e70a0a51af14a2, type: 2}
   chargingSpeed: 0.03
   drainingSpeed: 0.05
