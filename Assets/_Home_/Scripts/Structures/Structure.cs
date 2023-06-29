@@ -10,7 +10,7 @@ using GameEvents;
 
 public class Structure : MonoBehaviour
 {
-    public GameEvent onBuilt, onPlanned, onWon;
+    public GameEvent onBuilt, onPlanned;
     public ResourceSOIntDictionary resourcesNeeded;
     public UnityEvent onResourcesNeededChanged = new UnityEvent();
     public Material placingInvalidMaterial, placingValidMaterial, plannedMaterial, buildingMaterial;
@@ -112,7 +112,12 @@ public class Structure : MonoBehaviour
     }
     private void SetMaterial(Material newMaterial)
     {
-        Material[] newMaterials = { newMaterial };
+        List<Material> newMaterialsList = new List<Material>();
+        for (int i = 0; i < originalMaterials.Length; i++)
+        {
+            newMaterialsList.Add(newMaterial);
+        }
+        Material[] newMaterials = newMaterialsList.ToArray();
         SetMaterial(newMaterials);
     }
 

@@ -20,4 +20,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f384df29c2e56894e82e4a07decd3d14, type: 2}
     m_values: 1e0000000f0000000a000000
   prefab: {fileID: 6756956428564224311, guid: 948928f8c958d5e4299306d181f01e61, type: 3}
-  speedModifier: 0.4
+  speedModifier: 0.5

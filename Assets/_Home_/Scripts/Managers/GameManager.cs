@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
                 menuUI?.SetActive(true);
                 gameUI?.SetActive(false);
                 FindObjectOfType<ResourceSpawner>()?.SpawnInitialResources();
+                Structure[] structures = FindObjectsOfType<Structure>();
+                foreach (Structure structure in structures)
+                {
+                    Destroy(structure.gameObject);
+                }
                 Destroy(GameObject.Find("Robot and Target Combo(Clone)"));
                 Transform copy = GameObject.Find("Main Camera Pivot Copy").transform;
                 GameObject.Find("Main Camera Pivot").transform.SetPositionAndRotation(
@@ -82,10 +87,22 @@ public class GameManager : MonoBehaviour
                 DropFinalResource().Forget();
                 _gameState = value;
             }
+            else if (value == GameState.GameWon)
+            {
+                Debug.Log("Game Won!");
+                _gameState = value;
+            }
+            else if (value == GameState.GameOver)
+            {
+                if (gameState >= GameState.BuildCabin
+                   && gameState <= GameState.CarryPackage)
+                {
+                    Debug.Log("Game Over!");
+                    _gameState = value;
+                }
+            }
             else
             {
-                FindObjectOfType<ResourceSpawner>()?.SpawnInitialResources();
-                Destroy(GameObject.Find("Robot and Target Combo(Clone)"));
                 _gameState = value;
             }
 
@@ -107,8 +124,9 @@ public class GameManager : MonoBehaviour
 
         Ray ray = new Ray(initialPosition, moonPosition - initialPosition);
         RaycastHit hit;
+
         // Figure out where the ground is
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~LayerMask.NameToLayer("Ground")))
         {
             Vector3 p = hit.point;
             Vector3 normal = hit.normal;
@@ -119,6 +137,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [Button]
     public async UniTask DropRobot()
     {
         Vector3 moonPosition = GameObject.Find("Moon").transform.position;

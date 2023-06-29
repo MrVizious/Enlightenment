@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8575ca0c9c4cb4a8db0e318d920854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDead: {fileID: 11400000, guid: c4416c6d5a5c58b418ca936a7c599d85, type: 2}
+  gameLost: {fileID: 0}
   chargeChanged: {fileID: 11400000, guid: fb92f17335a46724b9e70a0a51af14a2, type: 2}
   chargingSpeed: 0.03
   drainingSpeed: 0.05
@@ -716,8 +716,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.14509803, g: 0.47232237, b: 1, a: 1}
-  m_Intensity: 14.23
-  m_Range: 5.7
+  m_Intensity: 18.56
+  m_Range: 8.43
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

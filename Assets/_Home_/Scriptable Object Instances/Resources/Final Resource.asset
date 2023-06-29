@@ -15,6 +15,6 @@ MonoBehaviour:
   icon: {fileID: 0}
   minimumDistanceToResource:
     m_keys: []
-    m_values: []
-  prefab: {fileID: 1923565087451108787, guid: 9ec112e7ec26ea74098012ce874f9f3c, type: 3}
-  speedModifier: 0.2
+    m_values: 
+  prefab: {fileID: 1650796806592352853, guid: 0a0cc438c72383c4e8625f4d6dbaa1b7, type: 3}
+  speedModifier: 0.35

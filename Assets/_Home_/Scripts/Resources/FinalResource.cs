@@ -18,6 +18,15 @@ public class FinalResource : Resource
             return _canvas;
         }
     }
+    private GameManager _gameManager;
+    private GameManager gameManager
+    {
+        get
+        {
+            if (_gameManager == null) _gameManager = FindObjectOfType<GameManager>();
+            return _gameManager;
+        }
+    }
 
     private Collider sunCollider = null;
 
@@ -33,8 +42,14 @@ public class FinalResource : Resource
             canvas.gameObject.SetActive(false);
         }
     }
+
     private void ExplodingUpdate()
     {
+        if (gameManager.gameState != GameManager.GameState.CarryPackage)
+        {
+            canvas.gameObject.SetActive(false);
+            return;
+        }
         if (isBeingCarried)
         {
             canvas.gameObject.SetActive(true);
@@ -54,12 +69,14 @@ public class FinalResource : Resource
             if (other.gameObject.name.ToLower().Equals("investigation(clone)"))
             {
                 onWon.Raise();
+                Destroy(gameObject);
             }
         }
         else if (!other.tag.ToLower().Equals("sun")) return;
         if (sunCollider != null) return;
         sunCollider = other;
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (sunCollider == null) return;
@@ -70,5 +87,6 @@ public class FinalResource : Resource
     private void Explode()
     {
         Debug.Log("BOOOOOM!!");
+        Destroy(gameObject);
     }
 }

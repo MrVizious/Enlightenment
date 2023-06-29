@@ -14,10 +14,16 @@ public class Robot : MonoBehaviour
             value = Mathf.Clamp01(value);
             _chargePercentage = value;
             chargeChanged.Raise(_chargePercentage);
-            if (_chargePercentage == 0f) playerDead.Raise();
+            if (_chargePercentage == 0f
+                && gameManager.gameState >= GameManager.GameState.BuildCabin
+                && gameManager.gameState <= GameManager.GameState.CarryPackage
+            )
+            {
+                gameLost.Raise();
+            }
         }
     }
-    public GameEvent playerDead;
+    public GameEvent gameLost;
     public GameEventFloat chargeChanged;
     public float chargingSpeed = 0.1f;
     public float drainingSpeed = 0.15f;
@@ -32,8 +38,15 @@ public class Robot : MonoBehaviour
             return _nightLight;
         }
     }
-
-
+    private GameManager _gameManager;
+    private GameManager gameManager
+    {
+        get
+        {
+            if (_gameManager == null) _gameManager = FindObjectOfType<GameManager>();
+            return _gameManager;
+        }
+    }
 
     void Update()
     {
