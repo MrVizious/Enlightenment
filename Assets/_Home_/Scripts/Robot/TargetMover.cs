@@ -32,7 +32,6 @@ namespace Pathfinding
         }
 
         /// <summary>Determines if the target position should be updated every frame or only on double-click</summary>
-        public bool onlyOnDoubleClick;
         public bool use2D;
 
         Camera cam;
@@ -46,7 +45,7 @@ namespace Pathfinding
 
         public void OnGUI()
         {
-            if (onlyOnDoubleClick && cam != null && Event.current.type == EventType.MouseDown && Event.current.clickCount == 2)
+            if (Input.GetMouseButtonDown(0) && cam != null)
             {
                 UpdateTargetPosition();
             }
@@ -55,7 +54,7 @@ namespace Pathfinding
         /// <summary>Update is called once per frame</summary>
         void Update()
         {
-            if (!onlyOnDoubleClick && cam != null)
+            if (Input.GetMouseButtonDown(0) && cam != null)
             {
                 UpdateTargetPosition();
             }
@@ -87,7 +86,7 @@ namespace Pathfinding
             {
                 target.position = newPosition;
 
-                if (onlyOnDoubleClick)
+                if (Input.GetMouseButtonDown(0))
                 {
                     // Slightly inefficient way of finding all AIs, but this is just an example script, so it doesn't matter much.
                     // FindObjectsOfType does not support interfaces unfortunately.
